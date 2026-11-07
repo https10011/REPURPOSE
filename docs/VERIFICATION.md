@@ -126,8 +126,9 @@ These supplement, and do not replace, the behavioural walk-through recorded in �
 - Real merchant page rendering and the production `domainRoute` endpoints on the eleven hosts.
 - Playwright-driven automated tests: the `preview_playwright` tool in this environment fails with
   `The property 'options.mode' must be one of: 'strip'. Received 'transform'`, so the browser
-  checks above were performed with the snapshot/click/type tools instead. The §6.1 captures used a
-  locally installed `playwright-core` against the system Chromium, which works.
+  checks in §5 were performed with the snapshot/click/type tools instead. `tests/app_browser_check.mjs`
+  and `tests/shell_browser_check.mjs` run headlessly against the system Chromium through a locally
+  installed `playwright-core`, which works, and cover the app screens and the shell failure branches.
 - SMS delivery: there is no gateway. OTP codes are generated server-side and surfaced in the app
   (§6.3 of the directive); the screens say so and do not claim the number was verified.
 

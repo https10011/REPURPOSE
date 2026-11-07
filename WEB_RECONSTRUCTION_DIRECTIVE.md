@@ -934,6 +934,8 @@ enforced.
   `origin`, <https://github.com/https10011/REPURPOSE>). Verified with `git fetch`: `origin/main` and
   local `HEAD` both resolve to `f23a290`. The evidence tree is untouched — `git status` shows only
   reconstruction paths. Nothing was force-pushed and no history was rewritten.
-* **Next actions for the succeeding agent:** (a) the optional hardening list from session 001 is
-  still open; (b) `#/settings` could be promoted to its own route if the owner wants it in the tab
-  bar; (c) nothing in phases 0–17 is outstanding.
+* **Next actions for the succeeding agent:** (a) proxy cross-origin merchant content through the
+  same origin so the anti-hijack check and direct bridge injection apply to it; (b) real VAPID keys
+  and provider OAuth credentials to replace the `Failure: …` callbacks; (c) ~~add a second browser
+  pass for the offline/HTTP-error/hijack branches~~ done — `tests/shell_browser_check.mjs`; (d)
+  re-run §12 on the deployment origin before shipping. Nothing in phases 0–17 is outstanding.

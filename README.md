@@ -106,19 +106,28 @@ bash tests/api_test.sh http://127.0.0.1:12000   # HTTP contract, needs a running
 node --test tests/js/*.test.mjs                 # client logic, no server needed
 php tests/game_engine_test.php                  # game maths, no server needed
 
-# Optional end-to-end check of the app screens (needs a browser + a scratch instance):
+# Optional end-to-end checks of the app screens (need a browser + a scratch instance):
 npm i --no-save playwright-core
 BASE=http://127.0.0.1:12000 PHONE=<existing account> PASS=<its password> \
   CHROMIUM=/usr/bin/chromium node tests/app_browser_check.mjs
+BASE=http://127.0.0.1:12000 CHROMIUM=/usr/bin/chromium node tests/shell_browser_check.mjs
 ```
 
 The JS suite must be invoked with the glob: `node --test tests/js/` resolves the directory as a
 single (non-existent) test file and fails.
 
-`tests/app_browser_check.mjs` signs in as an existing account, walks every screen, plays one round
-and asserts the balance and stats moved. It also carries two honesty guards: they fail if the OTP
-screen starts claiming the code was delivered, or if a blocked title stops explaining itself. Point
-it at a scratch database — it stakes real credits.
+Both browser checks are optional and self-skipping: without `playwright-core` or a browser they
+print `SKIP` and exit 0, so the dependency-free suite stays that way. Credentials are read from the
+environment on purpose — none is stored in the repository.
+
+`app_browser_check.mjs` signs in, walks every screen, plays one round and asserts the balance and
+stats moved (point it at a scratch database; it stakes real credits). `shell_browser_check.mjs`
+needs no account: it forces all four ways a load can fail — resolver failure, HTTP error, missing
+anti-hijack keywords, network abort — and checks the shell shows the route-failure dialog with a
+fresh track id each time, then that a healthy load still frames the app.
+
+Two of the app checks are honesty guards rather than feature tests: they fail if the OTP screen
+starts claiming the code was delivered, or if a blocked title stops explaining itself.
 
 ## Deployment notes
 
