@@ -105,10 +105,20 @@ cd web
 bash tests/api_test.sh http://127.0.0.1:12000   # HTTP contract, needs a running server + migrated DB
 node --test tests/js/*.test.mjs                 # client logic, no server needed
 php tests/game_engine_test.php                  # game maths, no server needed
+
+# Optional end-to-end check of the app screens (needs a browser + a scratch instance):
+npm i --no-save playwright-core
+BASE=http://127.0.0.1:12000 PHONE=<existing account> PASS=<its password> \
+  CHROMIUM=/usr/bin/chromium node tests/app_browser_check.mjs
 ```
 
 The JS suite must be invoked with the glob: `node --test tests/js/` resolves the directory as a
 single (non-existent) test file and fails.
+
+`tests/app_browser_check.mjs` signs in as an existing account, walks every screen, plays one round
+and asserts the balance and stats moved. It also carries two honesty guards: they fail if the OTP
+screen starts claiming the code was delivered, or if a blocked title stops explaining itself. Point
+it at a scratch database — it stakes real credits.
 
 ## Deployment notes
 

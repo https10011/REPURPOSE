@@ -16,3 +16,7 @@ Thumbs.db
 # Test artefacts
 web/tests/**/*.log
 *.tmp
+
+# Optional dependency for tests/app_browser_check.mjs (never committed)
+web/node_modules/
+web/package-lock.json

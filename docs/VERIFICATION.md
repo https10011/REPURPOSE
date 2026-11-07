@@ -96,6 +96,28 @@ Console was clean (no errors, no failed requests) at every step.
 
 `10` shows a toast together with the debug console; `11` isolates it.
 
+### 6.1 Owner layer (`web/m/`) — captured session 003
+
+The product screens are reachable both standalone and framed by the shell. These were captured
+headlessly (Playwright driving `/usr/bin/chromium`, 412×915 at 2×) against the seeded account
+`09171234567`, and the run reported no console errors or failed requests:
+
+| File | Content |
+|---|---|
+| `20-app-login.png` | phone + password sign-in |
+| `21-app-register.png` | name, phone, password, confirm |
+| `22-app-otp.png` | 6-digit entry, with the no-SMS-gateway notice |
+| `23-app-home.png` | balance card, quick actions, daily-credits strip, game grid |
+| `24-app-games-catalog.png` | catalog with categories and playable/blocked state |
+| `25-app-game-crash.png` | crash controls, auto cash-out, RTP disclosure |
+| `25-app-game-dice.png` | dice target and direction |
+| `25-app-game-slots.png` | three reels |
+| `25-app-game-live-casino.png` | blocked title, placeholder explanation |
+| `26-app-notifications.png` | in-app notification list |
+| `27-app-profile.png` | profile, stats, sign-out |
+
+These supplement, and do not replace, the behavioural walk-through recorded in §5.
+
 ## 7. Not verified / not verifiable here
 
 - Native-only paths: X5 kernel switching, hardware back key, WebView `onShowFileChooser` in a real
@@ -104,7 +126,10 @@ Console was clean (no errors, no failed requests) at every step.
 - Real merchant page rendering and the production `domainRoute` endpoints on the eleven hosts.
 - Playwright-driven automated tests: the `preview_playwright` tool in this environment fails with
   `The property 'options.mode' must be one of: 'strip'. Received 'transform'`, so the browser
-  checks above were performed with the snapshot/click/type tools instead.
+  checks above were performed with the snapshot/click/type tools instead. The §6.1 captures used a
+  locally installed `playwright-core` against the system Chromium, which works.
+- SMS delivery: there is no gateway. OTP codes are generated server-side and surfaced in the app
+  (§6.3 of the directive); the screens say so and do not claim the number was verified.
 
 ## 8. Repeat before deployment
 

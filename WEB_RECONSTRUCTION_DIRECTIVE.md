@@ -597,9 +597,9 @@ Each stage lists objective, tasks, evidence, deliverables, dependencies, verific
 | 12 Final completeness audit | DONE | §6 inventory re-walked; evidence tree untouched (`git status` shows only new reconstruction paths) |
 | 13 Delivery to version control | DONE | `cd6c22a` on `main`; push verified against `origin/main` (§15) |
 | 14 Addendum A: schema + auth/OTP/notification/account API | DONE | 9 tables + catalog seed; API suite 90/90; engine 33/33; `daily_credits` claim added in session 003 |
-| 15 Addendum A: app screens | DONE-U | 8 owner screens under `web/m/`; every route browser-walked (session 003); `#/settings` is a section inside `#/profile`, not a route |
+| 15 Addendum A: app screens | DONE | 8 owner screens under `web/m/`; every route browser-walked and captured (session 003); `#/settings` is a section inside `#/profile`, not a route |
 | 16 Addendum A: games + wallet | DONE | catalog + 3 playable games + 1 `BLOCKED`; stake bounds, payout maths, insufficient balance and the daily top-up covered by tests and browser runs |
-| 17 Addendum A: verification & docs | DONE-U | 90/90 API, 33/33 engine, 25/25 JS, browser walk-through of auth/catalog/game/profile/claim; screenshots not re-captured this session (§15 session 003) |
+| 17 Addendum A: verification & docs | DONE | 90/90 API, 33/33 engine, 25/25 JS; 16/16 browser checks via `tests/app_browser_check.mjs`; 11 owner screens captured in `docs/verification/20-…27-…` (§15 session 003) |
 
 Legend: `TODO` / `WIP` / `DONE` / `DONE-U` (implemented, verification limited) / `BLOCKED`.
 
@@ -914,14 +914,26 @@ enforced.
   `web/m/js/screens/home.js`, `web/m/js/screens/otp.js`, `web/m/css/app.css`,
   `web/tests/api_test.sh`; renamed `web/m/{site.css,site.js,index.html}` → `web/harness/`.
 * **Known limitations:** the `#/settings` surface is a section inside `#/profile`, not its own route
-  (unchanged from session 002). Verification screenshots in `docs/verification/` were not re-captured
-  this session, so phase 17 stays `DONE-U`. The merchant product, provider SDKs, FCM delivery and
-  cross-origin bridge injection remain out of scope by design (§13).
+  (unchanged from session 002). The merchant product, provider SDKs, FCM delivery and cross-origin
+  bridge injection remain out of scope by design (§13).
+* **Verification added after the first push (same session).** Phase 17 had been left `DONE-U`
+  because the screenshots had not been re-captured. They now have been, and the gap that made them
+  look optional is closed: `tests/app_browser_check.mjs` walks the app in a real browser, plays a
+  round and asserts the balance and stats moved (16/16). It is optional and self-skipping — it needs
+  `playwright-core` and a browser — and it holds two honesty guards so the §6.3 defect this session
+  fixed cannot come back silently: the OTP screen must not claim delivery, and a blocked title must
+  keep explaining itself. `docs/verification/20-app-…27-app-…` (11 distinct captures, 412×915 at 2×)
+  were taken with the same browser, and the run reported no console errors or failed requests.
+  Phases 15 and 17 are therefore `DONE`, not `DONE-U`.
+* **A note on method:** the first screenshot pass looked fine but was taken with a hash-only
+  navigation that resolved against the previous DOM, so several frames showed stale screens. The
+  assertions caught it (4 "failures" that were test bugs, not app bugs) and both the capture script
+  and the test now wait for the router. Worth remembering before trusting a screenshot again.
 * **Version control:** committed as `f23a290` ("Complete the client app, fix the credit dead end and
   the OTP claim (Addendum A phases 15-17)") and pushed to the established branch `main` (remote
   `origin`, <https://github.com/https10011/REPURPOSE>). Verified with `git fetch`: `origin/main` and
   local `HEAD` both resolve to `f23a290`. The evidence tree is untouched — `git status` shows only
   reconstruction paths. Nothing was force-pushed and no history was rewritten.
-* **Next actions for the succeeding agent:** (a) re-capture `docs/verification/` for the owner
-  screens now that they are stable, which would move phase 17 to `DONE`; (b) the optional hardening
-  list from session 001 is still open.
+* **Next actions for the succeeding agent:** (a) the optional hardening list from session 001 is
+  still open; (b) `#/settings` could be promoted to its own route if the owner wants it in the tab
+  bar; (c) nothing in phases 0–17 is outstanding.
