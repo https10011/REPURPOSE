@@ -15,6 +15,8 @@ are documented as limitations instead of being faked.
 - Backend API: [`docs/API.md`](docs/API.md)
 - Evidence → decision table and limitations: [`docs/RECONSTRUCTION_NOTES.md`](docs/RECONSTRUCTION_NOTES.md)
 - Checks and screenshots: [`docs/VERIFICATION.md`](docs/VERIFICATION.md), [`docs/verification/`](docs/verification)
+- Source-to-web fidelity audit: [`docs/FIDELITY_AUDIT.md`](docs/FIDELITY_AUDIT.md)
+- Shared-hosting deployment: [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)
 
 ### Two layers, deliberately kept apart
 

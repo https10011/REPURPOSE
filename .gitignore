@@ -20,3 +20,6 @@ web/tests/**/*.log
 # Optional dependency for tests/app_browser_check.mjs (never committed)
 web/node_modules/
 web/package-lock.json
+
+# Deployment packages are build output (regenerate with web/bin/package.sh)
+web/dist/

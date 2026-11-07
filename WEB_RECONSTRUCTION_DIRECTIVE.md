@@ -600,6 +600,8 @@ Each stage lists objective, tasks, evidence, deliverables, dependencies, verific
 | 15 Addendum A: app screens | DONE | 8 owner screens under `web/m/`; every route browser-walked and captured (session 003); `#/settings` is a section inside `#/profile`, not a route |
 | 16 Addendum A: games + wallet | DONE | catalog + 3 playable games + 1 `BLOCKED`; stake bounds, payout maths, insufficient balance and the daily top-up covered by tests and browser runs |
 | 17 Addendum A: verification & docs | DONE | 90/90 API, 33/33 engine, 25/25 JS; 16/16 browser checks via `tests/app_browser_check.mjs`; 11 owner screens captured in `docs/verification/20-…27-…` (§15 session 003) |
+| 18 Source-to-web fidelity audit | DONE | `docs/FIDELITY_AUDIT.md`; re-runnable `docs/verification/run_fidelity_audit.sh` → all checks pass; bridge 23/23 identical, 5 assets md5-identical, 0 game/DB classes in the APK (session 004) |
+| 19 Shared-hosting deployment readiness | DONE | `web/bin/package.sh` → `web/dist/`; `docs/DEPLOYMENT.md` with quoted host limits; packaged tree deployed to a fresh DB and the whole suite re-run green (session 004) |
 
 Legend: `TODO` / `WIP` / `DONE` / `DONE-U` (implemented, verification limited) / `BLOCKED`.
 
@@ -939,3 +941,68 @@ enforced.
   and provider OAuth credentials to replace the `Failure: …` callbacks; (c) ~~add a second browser
   pass for the offline/HTTP-error/hijack branches~~ done — `tests/shell_browser_check.mjs`; (d)
   re-run §12 on the deployment origin before shipping. Nothing in phases 0–17 is outstanding.
+
+### Session 004 — 2026-11-07 — OpenHands (autonomous) — final directive: fidelity audit + deployment
+
+**Scope.** The final directive asked for three things: (1) establish repository/APK ground truth,
+(2) audit the source-to-web fidelity, (3) make the app shared-hosting ready. Baseline at session
+start: `475f0ee`, clean, in sync with `origin/main`.
+
+* **Ground truth established (§FIDELITY_AUDIT §1).** `prod.app_sige7tlbf5.com`, label *Sige77*,
+  v2.4.87, jadx. **20 app-owned Java files** under `src/java/prod/apptest/**` out of 4,966 total;
+  **2 app activities** (`X5_Activity`, `OpenWebActivity`); **4 app layouts**. The decisive artefact
+  is the manifest `<meta-data name="merchant_url">` listing **11 remote domains** — the APK is a
+  WebView shell that frames an external merchant site.
+* **Fidelity audit (`docs/FIDELITY_AUDIT.md`).** The central claim — *the APK contains no game
+  logic and no product screen* — was verified **four independent ways**, all agreeing:
+  (a) 0 game-named classes; (b) no app auth classes (only the LINE SDK); (c) app `strings.xml`
+  holds only shell strings; (d) 0 app-owned SQLite/Room files. The single SQLite mention in an
+  app-reachable class (`defpackage/ab.java`) is a synthetic Firebase Analytics listener touching
+  `log_event_dropped`/`global_log_event_state` — not app data — so the verdict stands.
+* **Claims re-verified against the artefacts, not the prose.** The "23-method bridge" is exact: the
+  Java (`gs0` 22 + `ig` 1) and the JS (`bridge.js` `Android` object) yield identical 23-name sets
+  (`diff` clean). All five reused binaries are **md5-identical** to the originals (`splash_bg.jpg`,
+  `splash_logo.jpg`, `icon_bg.jpg`, `close_floating_window.png`, `ic_launcher.png`). The stack has
+  **no runtime dependencies** (no Composer, npm, vendor, outbound network, cron or SSH).
+* **Re-runnable audit:** `docs/verification/run_fidelity_audit.sh` performs every static check above
+  and exits non-zero on any failure. It passes.
+* **Two audit findings that are intended behaviour, not bugs.** A wrong OTP was accepted and a
+  mutation without an `Origin` header was rejected; both were checked against the source before
+  being judged. The first is an explicit owner instruction (§17.5) whose honesty problem was
+  already fixed in session 003 (the screen now states there is no SMS gateway and the number is not
+  confirmed). The second is the CSRF guard working. Neither was "fixed" — changing them would have
+  been the actual defect.
+* **Clean-install runtime audit.** Migrated a **brand-new** database (`sige77_fresh`): 21 schema +
+  7 seed statements, 19 tables. Full journey — register → OTP → verify → session → 4 game rounds →
+  logout → re-login — with the balance (`937`) and the `wallet_ledger` rows matching between the API
+  and MySQL. Suites on the clean instance: **API 90/90, JS 25/25, engine 33/33**.
+* **Shared-hosting readiness (`docs/DEPLOYMENT.md`, `web/bin/package.sh`).** Requirements measured
+  from the code: **PHP ≥ 8.1** (`never` return types; `str_starts_with`), `pdo_mysql`/`json`/
+  `mbstring`/`session`, Apache + `.htaccess`; nothing else. Host limits taken from the hosts' own
+  pages: InfinityFree — **PHP 8.3** (<https://forum.infinityfree.com/t/free-hosting-is-now-upgraded-to-php-8-3/109714>),
+  PDO/MySQLi "available on all accounts", DB hostname must be the panel value (not `localhost`), DB
+  reachable only from inside the platform, **cron disabled**, no SSH. AeonFree — pages **contradict
+  each other** (homepage "PHP 8.2" vs PHP/MySQL page "PHP 7.4"), so the notes tell the operator to
+  check `phpinfo()` first; InfinityFree is the safer default. Neither cron nor SSH is needed.
+* **Deployment package verified end-to-end.** `bin/package.sh` builds `web/dist/{sige77-web-<date>.tar.gz,
+  database.sql, DEPLOY.txt}` and excludes `tests/`, `harness/`, `bin/`, `var/`, `node_modules/` and
+  the local `config.php`. Extracted the archive, imported `database.sql` into a fresh DB
+  (`sige77_deploy`), served it, and re-ran everything: **API 90/90, JS 25/25, engine 33/33, app
+  browser 16/16, shell browser 15/15**. All five internal paths return 404/403.
+* **A useful negative result.** The first shell-browser run on the package failed 2/15 because the
+  audit had baked the placeholder domain `sige77.example.com` into the DB. The shell frames whatever
+  the `domains` row returns, so the fix was to point it at the serving origin — which is exactly the
+  caveat now written into `DEPLOY.md` §4.6.
+* **Files added:** `docs/FIDELITY_AUDIT.md`, `docs/DEPLOYMENT.md`,
+  `docs/verification/run_fidelity_audit.sh`, `web/bin/package.sh`. Modified: `README.md`,
+  `.gitignore` (ignore `web/dist/`), this directive.
+* **Files deliberately not touched:** the entire evidence tree, and every product file (no source
+  change was warranted — the audit found no defect).
+* **Version control:** committed as `1c023b9` and pushed to `main`
+  (<https://github.com/https10011/REPURPOSE>). `origin/main` and local `HEAD` both resolve to it.
+  Evidence tree untouched; no force-push; no history rewritten.
+* **Next actions for the succeeding agent:** (a) run §4 of `docs/DEPLOYMENT.md` on the owner's real
+  hosting account — the only step this environment cannot perform; (b) if a host turns out to be
+  PHP < 8.1, either move host or rewrite the two 8.1-only constructs (`never` returns,
+  `str_starts_with`); (c) optional hardening from §15 session 001 still stands (proxy cross-origin
+  merchant content, real VAPID/OAuth credentials).
