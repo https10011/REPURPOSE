@@ -78,7 +78,12 @@ try {
     if (isset($options['fresh'])) {
         $pdo = Db::pdo();
         $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
-        foreach (['push_subscriptions', 'blacklisted_urls', 'client_logs', 'events', 'sessions', 'domain_checks', 'domains', 'devices', 'settings', 'app_meta'] as $table) {
+        foreach ([
+            'wallet_ledger', 'game_rounds', 'wallets', 'app_notifications', 'otp_codes', 'auth_sessions',
+            'rate_limits', 'users', 'games',
+            'push_subscriptions', 'blacklisted_urls', 'client_logs', 'events', 'sessions', 'domain_checks',
+            'domains', 'devices', 'settings', 'app_meta',
+        ] as $table) {
             $pdo->exec("DROP TABLE IF EXISTS `{$table}`");
         }
         $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');

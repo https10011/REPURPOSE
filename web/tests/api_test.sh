@@ -117,6 +117,114 @@ check "POST /api/push/subscribe status" 200 "$(status_of "$R")"
 R=$(request POST /api/push/subscribe "{\"device_id\":\"${DEVICE_ID}\",\"endpoint\":\"https://push.test/abc\"}")
 check "push requires keys" 422 "$(status_of "$R")"
 
+# --- addendum A: local accounts, OTP, catalog, games ------------------------
+JAR=$(mktemp)
+PHONE="0917$(printf '%07d' $(( (RANDOM * 32768 + RANDOM) % 10000000 )))"
+SO=( -H "Origin: ${BASE}" )
+
+arequest() { # arequest <method> <path> [body] -> status|body (cookie jar + same-origin header)
+  local method="$1" path="$2" body="${3:-}"
+  if [ -n "$body" ]; then
+    curl -s -o /tmp/sige77_auth.$$ -w '%{http_code}' -b "$JAR" -c "$JAR" "${SO[@]}" \
+      -H 'Content-Type: application/json' -X "$method" --data "$body" "${BASE}${path}"
+  else
+    curl -s -o /tmp/sige77_auth.$$ -w '%{http_code}' -b "$JAR" -c "$JAR" "${SO[@]}" -X "$method" "${BASE}${path}"
+  fi
+  echo -n '|'
+  cat /tmp/sige77_auth.$$
+  rm -f /tmp/sige77_auth.$$
+}
+
+R=$(arequest GET /api/auth/session)
+check "auth: anonymous session" False "$(jqget "$(body_of "$R")" "d['value']['authenticated']")"
+
+R=$(arequest POST /api/auth/register "{\"name\":\"Test Player\",\"phone\":\"${PHONE}\",\"password\":\"secret123\",\"passwordConfirm\":\"secret123\"}")
+check "auth: register status" 200 "$(status_of "$R")"
+check "auth: register normalises phone" "+63${PHONE#0}" "$(jqget "$(body_of "$R")" "d['value']['phone']")"
+check "auth: register requires otp" True "$(jqget "$(body_of "$R")" "d['value']['otpRequired']")"
+check "auth: register returns 6-digit otp" 6 "$(jqget "$(body_of "$R")" "len(d['value']['otp']['code'])")"
+
+R=$(arequest POST /api/auth/register "{\"name\":\"Test Player\",\"phone\":\"${PHONE}\",\"password\":\"secret123\"}")
+check "auth: duplicate phone -> 409" 409 "$(status_of "$R")"
+R=$(arequest POST /api/auth/register "{\"name\":\"X\",\"phone\":\"${PHONE}9\",\"password\":\"secret123\"}")
+check "auth: name too short -> 422" 422 "$(status_of "$R")"
+R=$(arequest POST /api/auth/register "{\"name\":\"Short Pass\",\"phone\":\"${PHONE}8\",\"password\":\"short\"}")
+check "auth: weak password -> 422" 422 "$(status_of "$R")"
+R=$(arequest POST /api/auth/register "{\"name\":\"Mismatch\",\"phone\":\"${PHONE}7\",\"password\":\"secret123\",\"passwordConfirm\":\"secret124\"}")
+check "auth: password mismatch -> 422" 422 "$(status_of "$R")"
+
+R=$(arequest POST /api/auth/otp/request "{\"phone\":\"${PHONE}\"}")
+check "otp: request status" 200 "$(status_of "$R")"
+check "otp: request returns code" 6 "$(jqget "$(body_of "$R")" "len(d['value']['code'])")"
+R=$(arequest POST /api/auth/otp/verify "{\"phone\":\"${PHONE}\",\"code\":\"12\"}")
+check "otp: malformed code -> 422" 422 "$(status_of "$R")"
+R=$(arequest POST /api/auth/otp/verify "{\"phone\":\"${PHONE}\",\"code\":\"000000\"}")
+check "otp: any six digits accepted" 200 "$(status_of "$R")"
+check "otp: account verified" True "$(jqget "$(body_of "$R")" "d['value']['user']['verified']")"
+check "otp: opening balance" 1000 "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance']")"
+
+R=$(arequest GET /api/auth/session)
+check "auth: session after verify" True "$(jqget "$(body_of "$R")" "d['value']['authenticated']")"
+
+R=$(request GET /api/games)
+check "games: catalog status" 200 "$(status_of "$R")"
+check "games: catalog slugs" "['crash', 'dice', 'slots', 'live-casino']" "$(jqget "$(body_of "$R")" "[g['slug'] for g in d['value']['games']]")"
+check "games: blocked entry present" True "$(jqget "$(body_of "$R")" "'blocked' in [g['status'] for g in d['value']['games']]")"
+R=$(request GET '/api/games?category=originals')
+check "games: category filter" 3 "$(jqget "$(body_of "$R")" "len(d['value']['games'])")"
+R=$(request GET '/api/games?q=reels')
+check "games: search filter" "['slots']" "$(jqget "$(body_of "$R")" "[g['slug'] for g in d['value']['games']]")"
+
+R=$(arequest GET /api/account)
+check "account: requires session" 200 "$(status_of "$R")"
+check "account: wallet balance" 1000 "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance']")"
+
+R=$(arequest POST /api/games/play '{"slug":"dice","stake":100,"target":50,"direction":"under"}')
+check "play: dice status" 200 "$(status_of "$R")"
+check "play: balance arithmetic" True "$(jqget "$(body_of "$R")" "d['value']['balance'] == 1000 - 100 + d['value']['payout']")"
+R=$(arequest POST /api/games/play '{"slug":"slots","stake":50}')
+check "play: slots status" 200 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"crash","stake":25,"autoCashout":1.5}')
+check "play: crash status" 200 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"dice","stake":5,"target":50}')
+check "play: stake below minimum -> 422" 422 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"dice","stake":100,"target":99}')
+check "play: target out of range -> 422" 422 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"live-casino","stake":50}')
+check "play: blocked game -> 409" 409 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"dice","stake":10000,"target":50}')
+check "play: insufficient balance -> 402" 402 "$(status_of "$R")"
+R=$(arequest POST /api/games/play '{"slug":"nope","stake":50}')
+check "play: unknown game -> 404" 404 "$(status_of "$R")"
+
+R=$(arequest GET /api/games/history)
+check "history: rounds recorded" 3 "$(jqget "$(body_of "$R")" "len(d['value']['rounds'])")"
+
+R=$(arequest GET /api/notifications)
+check "notifications: welcome stored" "Account verified" "$(jqget "$(body_of "$R")" "d['value']['notifications'][0]['title']")"
+R=$(arequest POST /api/notifications '{"all":true}')
+check "notifications: mark read" True "$(jqget "$(body_of "$R")" "d['value']['markedRead']")"
+
+# Cross-site write with a live cookie must be refused (no Origin header at all).
+R=$(curl -s -b "$JAR" -H 'Content-Type: application/json' -X POST --data '{"slug":"dice","stake":50,"target":50}' -w '|%{http_code}' "${BASE}/api/games/play")
+check "security: write without origin -> 403" 403 "$(echo "$R" | sed 's/.*|//')"
+# Foreign origin is refused as well.
+R=$(curl -s -b "$JAR" -H 'Origin: https://evil.test' -H 'Content-Type: application/json' -X POST --data '{"slug":"dice","stake":50,"target":50}' -w '|%{http_code}' "${BASE}/api/games/play")
+check "security: foreign origin -> 403" 403 "$(echo "$R" | sed 's/.*|//')"
+
+R=$(arequest POST /api/auth/logout)
+check "auth: logout status" 200 "$(status_of "$R")"
+R=$(arequest GET /api/auth/session)
+check "auth: session revoked" False "$(jqget "$(body_of "$R")" "d['value']['authenticated']")"
+R=$(arequest POST /api/auth/login "{\"phone\":\"${PHONE}\",\"password\":\"wrong-pass\"}")
+check "auth: wrong password -> 401" 401 "$(status_of "$R")"
+R=$(arequest POST /api/auth/login "{\"phone\":\"${PHONE}\",\"password\":\"secret123\"}")
+check "auth: login status" 200 "$(status_of "$R")"
+R=$(arequest GET /api/account)
+check "auth: session after login" 200 "$(status_of "$R")"
+check "auth: balance survives login" True "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance'] < 1000")"
+rm -f "$JAR"
+
 # --- routing errors ---------------------------------------------------------
 R=$(request POST /api/app/config '{}')
 check "POST on GET route -> 405" 405 "$(status_of "$R")"

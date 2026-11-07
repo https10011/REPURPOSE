@@ -62,3 +62,27 @@ INSERT INTO settings (k, v) VALUES
   ('app_latest_url', ''),
   ('app_latest_note', 'Parity endpoint: the APK builds this URL but never calls it (AppTestApp.W).')
 ON DUPLICATE KEY UPDATE v = VALUES(v);
+
+-- Addendum A: the game catalog. No catalog is recoverable from the APK, so these entries are the
+-- three implemented games plus one explicitly blocked placeholder (directive §17.7).
+INSERT INTO games (slug, name, category, tagline, status, min_stake, max_stake, rtp_bps, sort_order)
+VALUES
+  ('crash',       'Crash',        'originals', 'Cash out before the curve crashes',            'playable', 10, 10000, 9700, 10),
+  ('dice',        'Dice',         'originals', 'Roll under or over your target',               'playable', 10, 10000, 9700, 20),
+  ('slots',       'Slots',        'originals', 'Three reels, six symbols',                     'playable', 10, 10000, 9600, 30),
+  ('live-casino', 'Live Casino',  'live',      'Original game logic unavailable',              'blocked',  10, 10000, NULL, 90)
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  category = VALUES(category),
+  tagline = VALUES(tagline),
+  status = VALUES(status),
+  min_stake = VALUES(min_stake),
+  max_stake = VALUES(max_stake),
+  rtp_bps = VALUES(rtp_bps),
+  sort_order = VALUES(sort_order);
+
+INSERT INTO settings (k, v) VALUES
+  ('wallet_start_balance', '1000'),
+  ('auth_session_days', '30'),
+  ('otp_ttl_seconds', '600')
+ON DUPLICATE KEY UPDATE v = VALUES(v);

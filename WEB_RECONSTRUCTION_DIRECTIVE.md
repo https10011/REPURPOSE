@@ -594,7 +594,7 @@ Each stage lists objective, tasks, evidence, deliverables, dependencies, verific
 | 11 Documentation & handover | DONE | `README.md` + `docs/{ARCHITECTURE,API,RECONSTRUCTION_NOTES,VERIFICATION}.md` |
 | 12 Final completeness audit | DONE | §6 inventory re-walked; evidence tree untouched (`git status` shows only new reconstruction paths) |
 | 13 Delivery to version control | DONE | `cd6c22a` on `main`; push verified against `origin/main` (§15) |
-| 14 Addendum A: schema + auth/OTP/notification/account API | WIP | §17.6 tables, §17.5 contract |
+| 14 Addendum A: schema + auth/OTP/notification/account API | DONE | 9 tables + catalog seed; API suite 78/78; engine 33/33 |
 | 15 Addendum A: app screens | TODO | §17.3-B |
 | 16 Addendum A: games + wallet | TODO | §17.7 |
 | 17 Addendum A: verification & docs | TODO | §17.8 |
@@ -812,4 +812,15 @@ No game logic, asset or catalog is present in the APK, so §6.1 cannot be satisf
 * **Deliverable of this phase:** §17 (scope split, evidence verdict, 18-row screen inventory,
   navigation map, auth contract, schema plan, games plan, phases 14–17, honesty rules), tracker rows
   and the §16 rule-4 exception.
-* **Next:** phase 14 (schema + auth/OTP/notification/account API + tests).
+* **Phase 14 (schema + API):** nine `CREATE TABLE IF NOT EXISTS` additions (users, auth_sessions,
+  otp_codes, app_notifications, wallets, wallet_ledger, games, game_rounds, rate_limits), catalog
+  seed, `--fresh` drop list extended. New code: `api/src/Auth.php` (phone normalisation, bcrypt,
+  HttpOnly SameSite cookies with SHA-256 at rest, same-origin enforcement, fixed-window limiter, OTP
+  issue/verify), `api/src/Wallet.php` (transactional integer ledger), `api/src/GameEngine.php`
+  (crash/dice/slots with injectable RNG), and eleven routes under `/api/auth/*`, `/api/account`,
+  `/api/notifications`, `/api/games*`. `/api/health` now covers all 19 tables.
+* **Phase 14 verification:** `web/tests/api_test.sh` 78/78 (auth, OTP, catalog, four game cases,
+  cross-site 403 with and without Origin, logout/login round-trip, balance arithmetic);
+  `web/tests/game_engine_test.php` 33/33 (exact payouts under an injected RNG, validation errors,
+  slot paytable RTP 207/216); JS suite still 25/25.
+* **Next:** phase 15 (app screens).

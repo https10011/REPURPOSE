@@ -8,7 +8,14 @@ declare(strict_types=1);
 Http::cors();
 Http::requireMethod('GET');
 
-$tables = ['app_meta', 'domains', 'domain_checks', 'devices', 'sessions', 'events', 'client_logs', 'blacklisted_urls', 'push_subscriptions', 'settings'];
+$tables = [
+    // shell tables (evidenced contract)
+    'app_meta', 'domains', 'domain_checks', 'devices', 'sessions', 'events', 'client_logs',
+    'blacklisted_urls', 'push_subscriptions', 'settings',
+    // Addendum A tables (owner scope, directive §17.6)
+    'users', 'auth_sessions', 'otp_codes', 'app_notifications', 'wallets', 'wallet_ledger',
+    'games', 'game_rounds', 'rate_limits',
+];
 $present = [];
 $missing = [];
 foreach ($tables as $table) {

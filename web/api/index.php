@@ -14,6 +14,19 @@
  *   POST /api/blacklist            anti-hijack blacklist
  *   POST /api/push/subscribe       Web Push subscription storage
  *   GET  /api/health               smoke check
+ *
+ * Addendum A (owner scope, directive §17):
+ *   POST /api/auth/register        local account creation
+ *   POST /api/auth/login           phone + password
+ *   POST /api/auth/logout          revoke session
+ *   GET  /api/auth/session         current account
+ *   POST /api/auth/otp/request     issue a locally generated code
+ *   POST /api/auth/otp/verify      complete sign-up + start session
+ *   GET  /api/account              profile, wallet, stats
+ *   GET|POST /api/notifications    account notices
+ *   GET  /api/games                catalog
+ *   POST /api/games/play           one round
+ *   GET  /api/games/history        recent rounds
  */
 
 declare(strict_types=1);
@@ -21,6 +34,9 @@ declare(strict_types=1);
 require __DIR__ . '/src/Db.php';
 require __DIR__ . '/src/Http.php';
 require __DIR__ . '/src/Support.php';
+require __DIR__ . '/src/Auth.php';
+require __DIR__ . '/src/Wallet.php';
+require __DIR__ . '/src/GameEngine.php';
 require __DIR__ . '/src/Router.php';
 
 $config = Db::config();
@@ -53,5 +69,19 @@ $router->post('/api/log', static fn () => require __DIR__ . '/src/routes/log.php
 $router->post('/api/domain/report', static fn () => require __DIR__ . '/src/routes/domain_report.php');
 $router->post('/api/blacklist', static fn () => require __DIR__ . '/src/routes/blacklist.php');
 $router->post('/api/push/subscribe', static fn () => require __DIR__ . '/src/routes/push_subscribe.php');
+
+// Addendum A (owner scope): local accounts, notifications and the reconstructed games.
+$router->post('/api/auth/register', static fn () => require __DIR__ . '/src/routes/auth_register.php');
+$router->post('/api/auth/login', static fn () => require __DIR__ . '/src/routes/auth_login.php');
+$router->post('/api/auth/logout', static fn () => require __DIR__ . '/src/routes/auth_logout.php');
+$router->get('/api/auth/session', static fn () => require __DIR__ . '/src/routes/auth_session.php');
+$router->post('/api/auth/otp/request', static fn () => require __DIR__ . '/src/routes/otp_request.php');
+$router->post('/api/auth/otp/verify', static fn () => require __DIR__ . '/src/routes/otp_verify.php');
+$router->get('/api/account', static fn () => require __DIR__ . '/src/routes/account.php');
+$router->get('/api/notifications', static fn () => require __DIR__ . '/src/routes/notifications.php');
+$router->post('/api/notifications', static fn () => require __DIR__ . '/src/routes/notifications.php');
+$router->get('/api/games', static fn () => require __DIR__ . '/src/routes/games_index.php');
+$router->post('/api/games/play', static fn () => require __DIR__ . '/src/routes/game_play.php');
+$router->get('/api/games/history', static fn () => require __DIR__ . '/src/routes/game_history.php');
 
 $router->dispatch();
