@@ -97,6 +97,33 @@ Writes `domain_checks` and updates `domains.status`, `last_checked_at`, `last_la
 
 `{"success":true,"value":{"db":true,"tables":[…],"missing":[],"merchant":…,"version":…,"time":…}}`
 
+## Addendum A routes (the reconstructed product layer)
+
+These routes back the owner-specified screens under `web/m/` (directive §17). They are labelled
+`OWNER` in the directive: they are reconstructed equivalents, not recovered merchant endpoints.
+All writes require a same-origin `Origin`/`Referer` and are rate-limited; sessions are a 32-byte
+token in an `HttpOnly`, `SameSite=Lax`, `Path=/` cookie whose SHA-256 is stored in `auth_sessions`.
+
+| Method | Path | Purpose |
+|---|---|---|
+| `POST` | `/api/auth/register` | name + phone + password → creates the account and issues an OTP |
+| `POST` | `/api/auth/login` | phone + password → session cookie |
+| `POST` | `/api/auth/logout` | revokes the current session |
+| `GET` | `/api/auth/session` | current user + wallet, or `401` |
+| `POST` | `/api/auth/otp/request` | issues/reissues a 6-digit code (delivered as an in-app notification) |
+| `POST` | `/api/auth/otp/verify` | completes sign-up and starts the session |
+| `GET` | `/api/account` | profile, wallet, stats, recent rounds and `dailyCredits { amount, claimedToday, nextClaimAt }` |
+| `POST` | `/api/wallet/claim` | grants `settings.wallet_daily_credits` once per UTC day; idempotent within the day |
+| `GET` | `/api/notifications` | in-app notifications (OTP codes, account notices, credit grants) |
+| `POST` | `/api/notifications` | marks notifications read |
+| `GET` | `/api/games` | catalog with categories and playable/blocked status |
+| `POST` | `/api/games/play` | server-authoritative round: debits stake, credits payout, records the round |
+| `GET` | `/api/games/history` | the signed-in user's recent rounds |
+
+`POST /api/wallet/claim` returns the resulting balance and `claimedToday`; a same-day repeat is a
+no-op that returns the current balance rather than an error, so a double-tap cannot fail a user.
+The grant is a normal `wallet_ledger` row and does not alter `stats.rounds` or `stats.wagered`.
+
 ## Error codes
 
 | Status | Code | When |
@@ -116,6 +143,10 @@ See `web/sql/schema.sql`. Tables: `app_meta`, `domains`, `domain_checks`, `devic
 Foreign keys use `ON DELETE SET NULL` (telemetry must survive device deletion) and `ON DELETE
 CASCADE` for `domains → app_meta`.
 
+The Addendum A product layer adds `users`, `auth_sessions`, `otp_codes`, `app_notifications`,
+`wallets`, `wallet_ledger`, `games`, `game_rounds`, `rate_limits`. Money is an integer credit unit
+(no floats); every balance change writes a `wallet_ledger` row in the same transaction as the round.
+
 Resolution tuning lives in `settings`:
 
 | Key | Default | Used by |
@@ -125,3 +156,7 @@ Resolution tuning lives in `settings`:
 | `resolver_timeout_ms` | 5000 | `/api/app/config` |
 | `min_loading_ms` | 1000 | documented `mz0.j` default |
 | `app_latest_url`, `app_latest_note` | empty | `/api/app/latest` |
+| `wallet_start_balance` | 1000 | wallet creation |
+| `wallet_daily_credits` | 500 | `POST /api/wallet/claim` |
+| `auth_session_days` | 30 | session expiry |
+| `otp_ttl_seconds` | 600 | OTP expiry |

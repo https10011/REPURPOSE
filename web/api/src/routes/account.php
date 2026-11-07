@@ -28,6 +28,15 @@ $unread = Db::fetch(
     [(int) $user['id']]
 );
 
+$allowance = max(0, (int) (Db::setting('wallet_daily_credits', '500') ?? 500));
+$lastClaim = Db::fetch(
+    "SELECT created_at FROM wallet_ledger
+      WHERE user_id = ? AND reason = 'daily_credits' ORDER BY id DESC LIMIT 1",
+    [(int) $user['id']]
+);
+$claimedToday = $lastClaim !== null
+    && substr((string) $lastClaim['created_at'], 0, 10) === gmdate('Y-m-d');
+
 Http::ok([
     'user'   => Auth::publicUser($user),
     'stats'  => [
@@ -35,6 +44,11 @@ Http::ok([
         'wagered'  => (int) $stats['wagered'],
         'returned' => (int) $stats['returned'],
         'net'      => (int) $stats['returned'] - (int) $stats['wagered'],
+    ],
+    'dailyCredits' => [
+        'amount'       => $allowance,
+        'claimedToday' => $claimedToday,
+        'nextClaimAt'  => gmdate('Y-m-d\TH:i:s\Z', strtotime('tomorrow 00:00:00 UTC')),
     ],
     'unreadNotifications' => (int) ($unread['c'] ?? 0),
     'recentRounds' => array_map(static fn (array $r): array => [

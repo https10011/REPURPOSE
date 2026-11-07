@@ -23,7 +23,7 @@ The reconstruction keeps the original client's architecture instead of inventing
 │   └─ downloads.js       DownloadListener equivalents                              │
 │                                                                                  │
 │  <iframe id="webview">  ← WebView                       sw.js ← cache interceptor│
-│      └─ /m/index.html   ← merchant page (here: the labelled harness)              │
+│      └─ /m/index.html   ← the reconstructed app (the page the shell frames)        │
 └──────────────────────────────────────────────────────────────────────────────────┘
                                     │ same-origin JSON
                                     ▼
@@ -107,7 +107,8 @@ difference between the native bridge and the web bridge.
 * `web/assets/css/shell.css` — every metric/colour annotated with its Android source.
 * `web/assets/js/*.js` — ES modules, no build step, no framework, no dependencies.
 * `web/open-web.html` + `open-web.js` — `OpenWebActivity` (secondary webview, floating close).
-* `web/m/index.html` + `site.js` — the merchant-page harness (see notes).
+* `web/harness/index.html` + `harness.js` — the labelled embedded-content harness (see notes).
+* `web/m/**` — the reconstructed application (directive §17): router, screens, api client, css.
 * `web/sw.js` — cache/push equivalents.
 
 ## Backend structure

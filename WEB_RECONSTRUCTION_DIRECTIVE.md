@@ -393,7 +393,9 @@ web/                                  # document root (PHP 8.1+ / Apache or `php
 │   │   └── open-web.js               # secondary webview page
 │   ├── img/                          # ORIGINAL assets copied from res/ (splash, logo, launcher…)
 │   └── js/i18n.js                    # strings.xml app strings
-├── m/index.html, m/site.js, m/site.css # same-origin harness at the exact path the shell requests
+├── harness/{index.html,harness.js,harness.css} # embedded-content harness (bridge contract demo)
+├── m/                                # THE APP: index.html, css/app.css, js/{app,router,api,store,ui,notify}.js
+│   └── js/screens/                   # login, register, otp, home, games, game, notifications, profile
 ├── sw.js                             # offline/HTTP cache equivalent
 ├── api/
 │   ├── index.php                     # front controller
@@ -594,10 +596,10 @@ Each stage lists objective, tasks, evidence, deliverables, dependencies, verific
 | 11 Documentation & handover | DONE | `README.md` + `docs/{ARCHITECTURE,API,RECONSTRUCTION_NOTES,VERIFICATION}.md` |
 | 12 Final completeness audit | DONE | §6 inventory re-walked; evidence tree untouched (`git status` shows only new reconstruction paths) |
 | 13 Delivery to version control | DONE | `cd6c22a` on `main`; push verified against `origin/main` (§15) |
-| 14 Addendum A: schema + auth/OTP/notification/account API | DONE | 9 tables + catalog seed; API suite 78/78; engine 33/33 |
-| 15 Addendum A: app screens | TODO | §17.3-B |
-| 16 Addendum A: games + wallet | TODO | §17.7 |
-| 17 Addendum A: verification & docs | TODO | §17.8 |
+| 14 Addendum A: schema + auth/OTP/notification/account API | DONE | 9 tables + catalog seed; API suite 90/90; engine 33/33; `daily_credits` claim added in session 003 |
+| 15 Addendum A: app screens | DONE-U | 8 owner screens under `web/m/`; every route browser-walked (session 003); `#/settings` is a section inside `#/profile`, not a route |
+| 16 Addendum A: games + wallet | DONE | catalog + 3 playable games + 1 `BLOCKED`; stake bounds, payout maths, insufficient balance and the daily top-up covered by tests and browser runs |
+| 17 Addendum A: verification & docs | DONE-U | 90/90 API, 33/33 engine, 25/25 JS, browser walk-through of auth/catalog/game/profile/claim; screenshots not re-captured this session (§15 session 003) |
 
 Legend: `TODO` / `WIP` / `DONE` / `DONE-U` (implemented, verification limited) / `BLOCKED`.
 
@@ -712,12 +714,13 @@ Legend for **Status**: `DONE` = reconstructed, `OWNER-DONE` = built to the adden
 | 10 | Login | `#/login` | Phone + password sign-in | logo, 2 fields, primary button, "Create account" | → home; → register | `POST /api/auth/login` | OWNER-DONE |
 | 11 | Register | `#/register` | Name, phone, password + confirmation | 4 fields, terms line, button | → OTP; → login | `POST /api/auth/register` | OWNER-DONE |
 | 12 | OTP verification | `#/otp` | 6-digit code, locally generated and delivered as an in-app notification | 6 boxes, resend timer, "Send code" | → home | `POST /api/auth/otp/request`, `/verify` | OWNER-DONE |
-| 13 | Home | `#/home` | Signed-in landing | balance card, quick actions, game grid, promo strip, bottom nav | → games/game/notifications/profile; → site | `GET /api/account`, `/api/games` | OWNER-DONE |
+| 13 | Home | `#/home` | Signed-in landing | balance card, quick actions, game grid, claimable daily-credits strip, bottom nav | → games/game/notifications/profile; → site | `GET /api/account`, `/api/games`, `POST /api/wallet/claim` | OWNER-DONE |
 | 14 | Games catalog | `#/games` | Full catalog with categories | search, category chips, tiles with status | → game | `GET /api/games` | OWNER-DONE |
 | 15 | Game play | `#/game/:slug` | Playable games + documented placeholders | rules sheet, stake controls, board, history | ← catalog | `POST /api/games/play` | OWNER-DONE / BLOCKED per game |
-| 16 | Notifications | `#/notifications` | OTP codes and account notices | list, unread dot, mark-read | ← any | `GET /api/notifications` | OWNER-DONE |
+| 16 | Notifications | `#/notifications` | OTP codes, account notices and credit grants | list, unread dot, mark-read | ← any | `GET /api/notifications` | OWNER-DONE |
 | 17 | Profile | `#/profile` | Account details, balance, session, logout, "Open Sige77 site" | rows, buttons | ← any; → login | `GET /api/auth/session`, `POST /api/auth/logout` | OWNER-DONE |
 | 18 | Settings | inside `#/profile` | Language/notification toggles that exist in the shell only | switches | — | local storage | OWNER-DONE |
+| 19 | Daily credit claim | inside `#/home` | The promo strip as a real control: grants the demo allowance once per UTC day | strip + claim button (disabled once claimed) | — | `POST /api/wallet/claim` | OWNER-DONE |
 
 Loading, empty and error states exist on every screen (skeleton list, "no games", inline field
 errors, retry button) as required by addendum §2.
@@ -799,6 +802,40 @@ No game logic, asset or catalog is present in the APK, so §6.1 cannot be satisf
 4. A game with no recoverable logic never pretends to be the original title: it is `BLOCKED` and
    says so on screen.
 
+### 17.10 The daily credit allowance (closing a dead end)
+
+Credits are play money and the wallet refuses to go below zero (`Wallet::apply`), so a player who
+staked away the whole balance reached a genuine dead end: every game button returned "Not enough
+balance for that stake" and nothing in the app could restore the balance. The home screen already
+advertised "Daily demo credits", which made the gap worse — the copy promised something no control
+could deliver.
+
+The fix makes the advertised allowance real rather than adding a new concept:
+
+* `POST /api/wallet/claim` grants `settings.wallet_daily_credits` (default `500`) once per **UTC day**,
+  decided by the newest `wallet_ledger` row with `reason = 'daily_credits'`. A second call in the same
+  day is a no-op that returns the current balance and `claimedToday: true`.
+* The grant is a ledger row like any other, so it appears in the profile arithmetic instead of
+  materialising from nowhere; it is deliberately *not* a game round, so `stats.rounds` and
+  `stats.wagered` stay honest (asserted by `claim: ledger did not change stats`).
+* Each grant writes an `app_notifications` row ("Demo credits added"), which is why the alert badge
+  increments after a claim — the same in-app delivery channel the OTP flow uses.
+* `GET /api/account` now also returns `dailyCredits { amount, claimedToday, nextClaimAt }` so the
+  screen can render the correct button state without a second request.
+* The endpoint enforces the same same-origin rule as every other mutation (`Auth::requireSameOrigin`)
+  and is rate-limited per user, so it is not a free-balance oracle for a cross-site page.
+
+The strip states plainly that the credits are play money and that they refresh at 00:00 UTC; it does
+not claim the player won anything.
+
+**Tension with §17.9 rule 3, resolved deliberately.** That rule forbids "demo"/"simulated" wording in
+the UI, but the master directive §6.3 requires the opposite for the OTP flow ("make the demonstration
+nature clear in the interface"), and the home strip already shipped as "Daily demo credits" in session
+002. Where the two conflict, this project follows the master directive: the credits are play money and
+saying so is the honest choice, so the copy stays. Rule 3 continues to apply to the *verification*
+claim — nothing in the UI implies a phone number was really verified — and that is where it is
+enforced.
+
 ### Session 002 — 2026-11-07 — Freebuff (autonomous) — Addendum A
 
 * **Instruction:** owner addendum requiring the complete client experience (all screens, navigation,
@@ -824,3 +861,62 @@ No game logic, asset or catalog is present in the APK, so §6.1 cannot be satisf
   `web/tests/game_engine_test.php` 33/33 (exact payouts under an injected RNG, validation errors,
   slot paytable RTP 207/216); JS suite still 25/25.
 * **Next:** phase 15 (app screens).
+
+### Session 003 — 2026-11-07 — OpenHands (autonomous) — screens, games and the credit dead end
+
+* **Instruction:** continue the roadmap; finish the reconstructed app at `/m/`, verify it, and commit.
+* **Starting point:** `278ae03` (Addendum A phase 14). Working tree held the harness move
+  (`web/m/site.{css,js}`, `web/m/index.html` → `web/harness/`) and a new, untracked `web/m/` app.
+  Nothing from the previous session was deleted; the move is a rename only, and `web/harness/` still
+  serves the labelled demo page the shell's WebView frames.
+* **What was found and fixed (the one real defect this session):** a busted player was permanently
+  locked out. `Wallet::apply` correctly refuses to take a balance below zero, so after staking the
+  whole balance every game answered "Not enough balance for that stake" — and the home screen's
+  "Daily demo credits" strip was static copy with no control behind it, promising an allowance the
+  app could not grant. Fixed by making that advertised allowance real: `POST /api/wallet/claim`
+  (`api/src/routes/wallet_claim.php`) grants `settings.wallet_daily_credits` (seeded `500`) once per
+  UTC day, decided by the newest `wallet_ledger` row with `reason = 'daily_credits'`; a same-day
+  repeat is a no-op. It writes a normal ledger row and an `app_notifications` row, and
+  `GET /api/account` now returns `dailyCredits { amount, claimedToday, nextClaimAt }`. Same-origin
+  enforced and rate-limited like every other mutation. §17.10 documents the reasoning.
+* **Honesty fix required by the master directive §6.3:** the OTP screen read "Enter the 6-digit code
+  sent to <phone>" while `Auth::verifyOtp` accepts any six digits as long as an unexpired code row
+  exists for that number. That is precisely the "secretly accept arbitrary codes while claiming the
+  phone was verified" failure §6.3 forbids. The copy now reads "Enter the 6-digit code for <phone>"
+  with an explicit line stating the build has no SMS gateway, the code is generated on this server,
+  and the number itself is not confirmed. Behaviour is unchanged; only the claim made to the user.
+  §17.10 records the deliberate tension with §17.9 rule 3 and how it is resolved.
+* **Test-harness corrections (both were fragile assertions, not product bugs):** the notification
+  check asserted `notifications[0].title == 'Account verified'`, which the new grant notification
+  displaced; it now asserts membership of the list. The login-persistence check asserted
+  `balance < 1000`, which a top-up invalidated; it now captures the balance before logout and
+  asserts exact equality after login — a stricter test of the same property.
+* **Verification performed this session:**
+  * `php -l` on every changed PHP file and `node --check` on every changed JS file → clean;
+    `bash -n tests/api_test.sh` → clean.
+  * `bin/migrate.php` → idempotent; 21 schema statements, 7 seed statements.
+  * `tests/api_test.sh http://127.0.0.1:12000` → **passed: 90, failed: 0** (12 new claim assertions:
+    grant amount, credited balance, same-day no-op, `claimedToday` on both endpoints, stats
+    untouched, cross-site 403).
+  * `node --test tests/js/*.test.mjs` → **25 pass, 0 fail** (the invocation matters: the glob, not
+    the `tests/js` directory path).
+  * `php tests/game_engine_test.php` → **33 pass, 0 fail**.
+  * Browser walk-through on the preview origin: signed-out `#/profile` → `#/login`; register with a
+    duplicate phone → "That phone number already has an account."; wrong password → generic error
+    with no account enumeration; registration → OTP screen showing the new honest copy → verify →
+    `#/home` at 1,000 credits; claim → 1,500 credits with "Claimed today" disabled, `rounds`/`staked`
+    still 0 and net still `+0`, alert badge 1 → 2, and "Demo credits added" present in
+    `#/notifications`; reload → balance and claimed state persist; crash play → stake debited,
+    payout credited, round in history; `Max` then play on a drained wallet → "Not enough balance for
+    that stake" (402 path).
+* **Files changed:** added `web/api/src/routes/wallet_claim.php`; modified `web/api/index.php`,
+  `web/api/src/routes/account.php`, `web/sql/seed.sql`, `web/m/js/api.js`,
+  `web/m/js/screens/home.js`, `web/m/js/screens/otp.js`, `web/m/css/app.css`,
+  `web/tests/api_test.sh`; renamed `web/m/{site.css,site.js,index.html}` → `web/harness/`.
+* **Known limitations:** the `#/settings` surface is a section inside `#/profile`, not its own route
+  (unchanged from session 002). Verification screenshots in `docs/verification/` were not re-captured
+  this session, so phase 17 stays `DONE-U`. The merchant product, provider SDKs, FCM delivery and
+  cross-origin bridge injection remain out of scope by design (§13).
+* **Next actions for the succeeding agent:** (a) re-capture `docs/verification/` for the owner
+  screens now that they are stable, which would move phase 17 to `DONE`; (b) the optional hardening
+  list from session 001 is still open.

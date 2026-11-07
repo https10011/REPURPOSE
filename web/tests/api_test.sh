@@ -178,10 +178,27 @@ check "games: search filter" "['slots']" "$(jqget "$(body_of "$R")" "[g['slug'] 
 R=$(arequest GET /api/account)
 check "account: requires session" 200 "$(status_of "$R")"
 check "account: wallet balance" 1000 "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance']")"
+check "account: daily credits advertised" 500 "$(jqget "$(body_of "$R")" "d['value']['dailyCredits']['amount']")"
+check "account: not yet claimed today" False "$(jqget "$(body_of "$R")" "d['value']['dailyCredits']['claimedToday']")"
+
+R=$(arequest POST /api/wallet/claim '{}')
+check "claim: first claim status" 200 "$(status_of "$R")"
+check "claim: grants the allowance" 500 "$(jqget "$(body_of "$R")" "d['value']['granted']")"
+check "claim: balance credited" 1500 "$(jqget "$(body_of "$R")" "d['value']['balance']")"
+R=$(arequest POST /api/wallet/claim '{}')
+check "claim: second claim is a no-op" 0 "$(jqget "$(body_of "$R")" "d['value']['granted']")"
+check "claim: balance unchanged" 1500 "$(jqget "$(body_of "$R")" "d['value']['balance']")"
+check "claim: reported as claimed" True "$(jqget "$(body_of "$R")" "d['value']['claimedToday']")"
+R=$(arequest GET /api/account)
+check "claim: account reflects claim" True "$(jqget "$(body_of "$R")" "d['value']['dailyCredits']['claimedToday']")"
+check "claim: ledger did not change stats" 0 "$(jqget "$(body_of "$R")" "d['value']['stats']['rounds']")"
+# Claiming must not be a cross-site write.
+R=$(curl -s -b "$JAR" -H 'Content-Type: application/json' -X POST --data '{}' -w '|%{http_code}' "${BASE}/api/wallet/claim")
+check "claim: cross-site refused -> 403" 403 "$(echo "$R" | sed 's/.*|//')"
 
 R=$(arequest POST /api/games/play '{"slug":"dice","stake":100,"target":50,"direction":"under"}')
 check "play: dice status" 200 "$(status_of "$R")"
-check "play: balance arithmetic" True "$(jqget "$(body_of "$R")" "d['value']['balance'] == 1000 - 100 + d['value']['payout']")"
+check "play: balance arithmetic" True "$(jqget "$(body_of "$R")" "d['value']['balance'] == 1500 - 100 + d['value']['payout']")"
 R=$(arequest POST /api/games/play '{"slug":"slots","stake":50}')
 check "play: slots status" 200 "$(status_of "$R")"
 R=$(arequest POST /api/games/play '{"slug":"crash","stake":25,"autoCashout":1.5}')
@@ -201,7 +218,8 @@ R=$(arequest GET /api/games/history)
 check "history: rounds recorded" 3 "$(jqget "$(body_of "$R")" "len(d['value']['rounds'])")"
 
 R=$(arequest GET /api/notifications)
-check "notifications: welcome stored" "Account verified" "$(jqget "$(body_of "$R")" "d['value']['notifications'][0]['title']")"
+check "notifications: welcome stored" True "$(jqget "$(body_of "$R")" "'Account verified' in [n['title'] for n in d['value']['notifications']]")"
+check "notifications: claim recorded" True "$(jqget "$(body_of "$R")" "'Demo credits added' in [n['title'] for n in d['value']['notifications']]")"
 R=$(arequest POST /api/notifications '{"all":true}')
 check "notifications: mark read" True "$(jqget "$(body_of "$R")" "d['value']['markedRead']")"
 
@@ -212,6 +230,8 @@ check "security: write without origin -> 403" 403 "$(echo "$R" | sed 's/.*|//')"
 R=$(curl -s -b "$JAR" -H 'Origin: https://evil.test' -H 'Content-Type: application/json' -X POST --data '{"slug":"dice","stake":50,"target":50}' -w '|%{http_code}' "${BASE}/api/games/play")
 check "security: foreign origin -> 403" 403 "$(echo "$R" | sed 's/.*|//')"
 
+R=$(arequest GET /api/account)
+BALANCE_BEFORE_LOGOUT=$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance']")
 R=$(arequest POST /api/auth/logout)
 check "auth: logout status" 200 "$(status_of "$R")"
 R=$(arequest GET /api/auth/session)
@@ -222,7 +242,7 @@ R=$(arequest POST /api/auth/login "{\"phone\":\"${PHONE}\",\"password\":\"secret
 check "auth: login status" 200 "$(status_of "$R")"
 R=$(arequest GET /api/account)
 check "auth: session after login" 200 "$(status_of "$R")"
-check "auth: balance survives login" True "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance'] < 1000")"
+check "auth: balance survives login" "$BALANCE_BEFORE_LOGOUT" "$(jqget "$(body_of "$R")" "d['value']['user']['wallet']['balance']")"
 rm -f "$JAR"
 
 # --- routing errors ---------------------------------------------------------

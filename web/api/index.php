@@ -27,6 +27,7 @@
  *   GET  /api/games                catalog
  *   POST /api/games/play           one round
  *   GET  /api/games/history        recent rounds
+ *   POST /api/wallet/claim         daily demo-credit top-up
  */
 
 declare(strict_types=1);
@@ -83,5 +84,6 @@ $router->post('/api/notifications', static fn () => require __DIR__ . '/src/rout
 $router->get('/api/games', static fn () => require __DIR__ . '/src/routes/games_index.php');
 $router->post('/api/games/play', static fn () => require __DIR__ . '/src/routes/game_play.php');
 $router->get('/api/games/history', static fn () => require __DIR__ . '/src/routes/game_history.php');
+$router->post('/api/wallet/claim', static fn () => require __DIR__ . '/src/routes/wallet_claim.php');
 
 $router->dispatch();

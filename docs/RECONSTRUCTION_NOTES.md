@@ -61,7 +61,8 @@ harness makes it visible) instead of "cleaning" the URL.
 
 ### 3.6 `/m/index.html`
 `X5_Activity.E()` concatenates the suffix when `isSingleLine` is false (manifest value `0`). The
-harness is therefore served at `/m/index.html`, exactly the path the shell requests.
+reconstructed application is therefore served at `/m/index.html`, exactly the path the shell
+requests; the labelled embedded-content harness moved to `/harness/index.html`.
 
 ### 3.7 Loading dialog
 `mz0` shows a 50 dp loader inside a `#444444` 20 dp-radius card at the bottom (window gravity
@@ -90,8 +91,8 @@ camera) and writes the result back into the page's input through `DataTransfer`.
 ### 3.11 Anti-hijack check
 `jg.shouldInterceptRequest()` rejects a main document that contains none of `"root"`, `ucbet`,
 `"brand="`, blacklists the URL and fails the load. Only same-origin responses are readable in a
-browser, so the check runs for same-origin documents (the harness) and is skipped — with a log
-line — for cross-origin ones.
+browser, so the check runs for same-origin documents (the app and the harness) and is skipped — with
+a log line — for cross-origin ones. The app keeps the `"root"` marker the shell looks for.
 
 ### 3.12 Bridge failure callbacks
 `yg.v/w()` evaluate `window.<callback>('Failure: <message>')` on the page. The web bridge uses the
@@ -124,8 +125,9 @@ white for the 100° arc (`LVCircularRing.onDraw`), `RightDiaView`/`WrongDiaView`
 
 ## 5. Documented limitations
 
-1. **Merchant page** — unavailable; `web/m/index.html` is a clearly labelled harness, not a
-   re-creation of the product.
+1. **Merchant page** — unavailable. The path it occupied (`/m/index.html`) now serves the
+   reconstructed application (directive §17), and `web/harness/index.html` keeps the clearly
+   labelled harness that exercises the bridge contract; neither pretends to be the merchant product.
 2. **Cross-origin bridge** — no browser API can inject objects into a cross-origin frame; such
    pages get a `postMessage` relay and lose the automatic clipboard override.
 3. **Provider SDKs** — Firebase/AppsFlyer/Adjust/OpenInstall/Transsion/Snowball have no browser

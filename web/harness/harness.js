@@ -1,5 +1,5 @@
 /**
- * site.js — behaviour of the embedded-content harness (see m/index.html).
+ * harness.js — behaviour of the embedded-content harness (see harness/index.html).
  *
  * This script is the counterpart of the proprietary page that the real APK loads: it consumes
  * exactly the contract the shell exposes — the attribution query parameters and the

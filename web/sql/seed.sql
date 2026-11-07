@@ -83,6 +83,7 @@ ON DUPLICATE KEY UPDATE
 
 INSERT INTO settings (k, v) VALUES
   ('wallet_start_balance', '1000'),
+  ('wallet_daily_credits', '500'),
   ('auth_session_days', '30'),
   ('otp_ttl_seconds', '600')
 ON DUPLICATE KEY UPDATE v = VALUES(v);

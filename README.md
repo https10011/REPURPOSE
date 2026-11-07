@@ -16,6 +16,22 @@ are documented as limitations instead of being faked.
 - Evidence → decision table and limitations: [`docs/RECONSTRUCTION_NOTES.md`](docs/RECONSTRUCTION_NOTES.md)
 - Checks and screenshots: [`docs/VERIFICATION.md`](docs/VERIFICATION.md), [`docs/verification/`](docs/verification)
 
+### Two layers, deliberately kept apart
+
+The APK contains a WebView shell and nothing else: no product screen, no game, no database. So the
+deliverable is built in two layers, and the documentation never blurs them.
+
+* **Evidenced layer** — the shell itself. Launcher, splash, domain resolution, WebView host, the
+  23-method bridge, dialogs, toasts, downloads, offline cache. Reconstructed 1:1 from the APK and
+  unchanged by later work.
+* **Owner layer** — the product the shell frames, at `/m/index.html`. Login, registration, local
+  OTP, home, game catalog, three playable games, notifications, profile. The APK holds no evidence
+  for any of this (the merchant site behind the WebView did, and it is unavailable), so these are
+  reconstructed equivalents built to the owner's contract and labelled `OWNER` throughout.
+
+Read the directive's §17 before changing anything in `web/m/`; it records what is evidenced and what
+is an equivalent.
+
 ## Requirements
 
 - PHP 8.1+ with `pdo_mysql`, `json`, `mbstring`
@@ -58,7 +74,8 @@ web/
   assets/js/            app, resolver, bridge, webview, dialogs, storage, i18n, …
   api/index.php         single entry point for the PHP backend
   api/src/              Db, Http, Router, Support + one file per route
-  m/index.html          labelled merchant-page harness stood in for the unavailable site
+  m/                    the reconstructed application (directive §17): index.html, js/, css/
+  harness/              labelled embedded-content harness that exercises the bridge contract
   config/               config.php (defaults), config.example.php, config.local.php (ignored)
   sql/                  schema.sql, seed.sql
   bin/                  migrate.php, serve.sh, db-info.php
@@ -75,7 +92,8 @@ web/
    blacklist, and falls back to `https://www.112121313.com` exactly once.
 4. The result is decorated with `affiliateCode`, `fbPixelId`, `tid`, `gaid`, `snowBallAppId` and
    `isSingleLine=0` appends `/m/index.html`, then loaded into an `<iframe>` that stands in for the
-   WebView.
+   WebView. That path serves the reconstructed application, so the shell frames a real product
+   instead of a remote merchant page.
 5. `window.Android` (plus `JSInterface`, `LaunchOpen`, `LaunchClose`, `Color`, `Log*`) is injected
    for same-origin documents; cross-origin documents get a `postMessage` relay.
 6. Back/Escape go through the same `canGoBack` → exit-dialog logic as `yg.onKeyDown`.
@@ -84,9 +102,13 @@ web/
 
 ```bash
 cd web
-./tests/api_test.sh          # HTTP contract, needs a running server + migrated DB
-node --test tests/js/        # client logic, no server needed
+bash tests/api_test.sh http://127.0.0.1:12000   # HTTP contract, needs a running server + migrated DB
+node --test tests/js/*.test.mjs                 # client logic, no server needed
+php tests/game_engine_test.php                  # game maths, no server needed
 ```
+
+The JS suite must be invoked with the glob: `node --test tests/js/` resolves the directory as a
+single (non-existent) test file and fails.
 
 ## Deployment notes
 
