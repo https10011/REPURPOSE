@@ -998,7 +998,7 @@ start: `475f0ee`, clean, in sync with `origin/main`.
   `.gitignore` (ignore `web/dist/`), this directive.
 * **Files deliberately not touched:** the entire evidence tree, and every product file (no source
   change was warranted — the audit found no defect).
-* **Version control:** committed as `1c023b9` and pushed to `main`
+* **Version control:** committed as `1e62803` (delivery commit; the follow-up commit that writes this record is the tip) and pushed to `main`
   (<https://github.com/https10011/REPURPOSE>). `origin/main` and local `HEAD` both resolve to it.
   Evidence tree untouched; no force-push; no history rewritten.
 * **Next actions for the succeeding agent:** (a) run §4 of `docs/DEPLOYMENT.md` on the owner's real
