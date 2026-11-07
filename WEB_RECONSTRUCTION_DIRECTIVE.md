@@ -917,6 +917,11 @@ enforced.
   (unchanged from session 002). Verification screenshots in `docs/verification/` were not re-captured
   this session, so phase 17 stays `DONE-U`. The merchant product, provider SDKs, FCM delivery and
   cross-origin bridge injection remain out of scope by design (§13).
+* **Version control:** committed as `f23a290` ("Complete the client app, fix the credit dead end and
+  the OTP claim (Addendum A phases 15-17)") and pushed to the established branch `main` (remote
+  `origin`, <https://github.com/https10011/REPURPOSE>). Verified with `git fetch`: `origin/main` and
+  local `HEAD` both resolve to `f23a290`. The evidence tree is untouched — `git status` shows only
+  reconstruction paths. Nothing was force-pushed and no history was rewritten.
 * **Next actions for the succeeding agent:** (a) re-capture `docs/verification/` for the owner
   screens now that they are stable, which would move phase 17 to `DONE`; (b) the optional hardening
   list from session 001 is still open.
