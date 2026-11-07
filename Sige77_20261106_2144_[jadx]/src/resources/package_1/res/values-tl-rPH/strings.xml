@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Hindi makapag-picture</string>
+  <string name="PERMISSION2">Hindi ka nabigyan ng pahintulot sa larawan</string>
+  <string name="PERMISSION3">kanselahin</string>
+  <string name="PERMISSION4">Pumunta sa set</string>
+  <string name="album">Album</string>
+  <string name="alertDialog1">Paalala</string>
+  <string name="alertDialog2">Pwede na umalis sa laro</string>
+  <string name="alertDialog3">Sandali lang</string>
+  <string name="alertDialog4">oo</string>
+  <string name="apk_install_failed">Paumanhin, hindi nagtagumpay ang pag-download. Mangyaring suriin ang iyong koneksyon sa network o subukan ulit mamaya.</string>
+  <string name="camera">Kamera</string>
+  <string name="cancel">Kanselahin</string>
+  <string name="cleanCache">Matagumpay na nalinis ang log</string>
+  <string name="cleanLog">Malinis na Log</string>
+  <string name="copy">Kopyahin</string>
+  <string name="domain_route_not_found">Hindi mahanap ang mabilis na ruta, pakisubukang muli sa ibang pagkakataon.</string>
+  <string name="file">Dokumento</string>
+  <string name="find_fastest_route">Nasa amin ang pinakamabilis na linya para sa iyo!</string>
+  <string name="loading_video">Naglo-load ang video</string>
+  <string name="logText">Test Log Text</string>
+  <string name="mloading_dialog">Naglo-load…</string>
+  <string name="mloading_dialog_succeed">Puno</string>
+  <string name="no_network">Walang network</string>
+  <string name="ok">Ok</string>
+  <string name="prompt1">Paalala, ang unang pag-load ay mas mahaba, gumamit ng WIFI.</string>
+  <string name="prompt2">Magandang balita! pagkatapos ng unang pag-load, sa susunod na pagbukas mo ay hindi na ito kokunsumo ng oras.</string>
+  <string name="prompt3">Sinusubukang mag-download, habaan ang pasensya.</string>
+  <string name="prompt4">Nagawa ko na ang lahat para i-load ito, magiging handa na ako sa lalong madaling panahon.</string>
+  <string name="request_push_permission">Ang pagpapaganap ng mga pahintulot sa push notification ay tiyak na hindi mo malalaktawan ang mga mahahalagang mensahe.</string>
+  <string name="retry">Subukan muli</string>
+  <string name="save_failed">Nabigo ang pag-save</string>
+  <string name="save_image">I-download ang Larawan</string>
+  <string name="save_success">Matagumpay na na-save</string>
+  <string name="tip_speed_test">Sinusubukang hanapin ang pinakamabilis na linya.</string>
+  <string name="uploadPicture">Pumili ng paraan ng pag-upload ng larawan</string>
+</resources>

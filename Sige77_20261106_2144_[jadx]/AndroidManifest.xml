@@ -1,0 +1,403 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<manifest android:versionCode="1"
+          android:versionName="2.4.87"
+          android:compileSdkVersion="36"
+          android:compileSdkVersionCodename="16"
+          package="prod.app_sige7tlbf5.com"
+          platformBuildVersionCode="36"
+          platformBuildVersionName="16" xmlns:android="http://schemas.android.com/apk/res/android">
+  <uses-sdk android:minSdkVersion="24"
+            android:targetSdkVersion="36" />
+  <permission android:name="prod.app_sige7tlbf5.com.permission.JPUSH_MESSAGE"
+              android:protectionLevel="signature" />
+  <uses-permission android:name="prod.app_sige7tlbf5.com.permission.JPUSH_MESSAGE" />
+  <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+  <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+  <uses-feature android:name="android.hardware.camera.autofocus" />
+  <uses-feature android:name="android.hardware.camera"
+                android:required="false" />
+  <queries>
+    <package android:name="jp.naver.line.android" />
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="https" />
+    </intent>
+    <package android:name="com.facebook.katana" />
+    <intent>
+      <action android:name="com.appsflyer.referrer.INSTALL_PROVIDER" />
+    </intent>
+    <package android:name="com.instagram.android" />
+    <package android:name="com.facebook.lite" />
+    <package android:name="com.samsung.android.mapsagent" />
+    <intent>
+      <action android:name="android.intent.action.MAIN" />
+    </intent>
+    <provider android:authorities="com.com.transsion.appmarket.data" />
+  </queries>
+  <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="com.transsion.dataservice.permission.READ" />
+  <uses-permission android:name="com.transsion.dataservice.permission.WRITE" />
+  <meta-data android:name="tran_athena_version"
+             android:value="1.2.0.0-snowball" />
+  <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+  <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
+  <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
+  <uses-permission android:name="com.samsung.android.mapsagent.permission.READ_APP_INFO" />
+  <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA" />
+  <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <uses-permission android:name="android.permission.ACCESS_ADSERVICES_CUSTOM_AUDIENCE" />
+  <uses-permission android:name="android.permission.ACCESS_ADSERVICES_TOPICS" />
+  <permission android:name="prod.app_sige7tlbf5.com.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+              android:protectionLevel="signature" />
+  <uses-permission android:name="prod.app_sige7tlbf5.com.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+  <meta-data android:name="tran_gslb_version"
+             android:value="1.0.2.6" />
+  <meta-data android:name="tran_coreutil_version"
+             android:value="1.0.61.09" />
+  <meta-data android:name="tran_json_version"
+             android:value="1.0.5.01" />
+  <application android:theme="@style/SplashTheme"
+               android:label="Sige77"
+               android:icon="@mipmap/ic_launcher"
+               android:name="prod.apptest.com.AppTestApp"
+               android:allowBackup="true"
+               android:hardwareAccelerated="true"
+               android:supportsRtl="true"
+               android:extractNativeLibs="true"
+               android:fullBackupContent="@xml/appsflyer_backup_rules"
+               android:usesCleartextTraffic="true"
+               android:roundIcon="@mipmap/ic_launcher"
+               android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+               android:dataExtractionRules="@xml/appsflyer_data_extraction_rules">
+    <uses-library android:name="org.apache.http.legacy"
+                  android:required="false" />
+    <activity android:name="prod.apptest.com.activity.OpenWebActivity"
+              android:exported="false"
+              android:configChanges="orientation|screenSize"
+              android:windowSoftInputMode="adjustResize"
+              android:hardwareAccelerated="true" />
+    <activity android:name="prod.apptest.com.activity.X5_Activity"
+              android:exported="true"
+              android:launchMode="singleTop"
+              android:screenOrientation="portrait"
+              android:configChanges="orientation|screenSize"
+              android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+              android:hardwareAccelerated="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <property android:name="android.adservices.AD_SERVICES_CONFIG"
+              android:resource="@xml/gma_ad_services_config" />
+    <meta-data android:name="merchant"
+               android:value="sige7tlbf5" />
+    <meta-data android:name="merchant_url"
+               android:value="https://www.77sige.club,https://www.77sige.net,https://www.sige77.app,https://www.sige777.net,https://www.sige777.club,https://www.sige777.vip,https://www.sige77a.com,https://www.sige77a.org,https://www.sige77a.app,https://www.sige77a.net,https://www.49704794.com" />
+    <meta-data android:name="version"
+               android:value="2.4.87" />
+    <meta-data android:name="appName"
+               android:value="Sige77" />
+    <meta-data android:name="backupDomain"
+               android:value="https://www.112121313.com" />
+    <meta-data android:name="affiliateCode"
+               android:value="_" />
+    <meta-data android:name="device"
+               android:value="1" />
+    <meta-data android:name="isSingleLine"
+               android:value="0" />
+    <meta-data android:name="UMENG_APPKEY"
+               android:value="5d5612fe570df330ee000117" />
+    <meta-data android:name="UMENG_CHANNEL"
+               android:value="sige7tlbf5" />
+    <meta-data android:name="JPUSH_TAG"
+               android:value="" />
+    <meta-data android:name="APPSFLYER_KEY"
+               android:value="" />
+    <meta-data android:name="ADJUST_APP_TOKEN"
+               android:value="" />
+    <meta-data android:name="AGENT_NAME"
+               android:value="" />
+    <meta-data android:name="FB_PIXEL_ID"
+               android:value="_" />
+    <meta-data android:name="TID"
+               android:value="_0" />
+    <meta-data android:name="ADJUST_DEFAULT_TRACKER"
+               android:value="_0" />
+    <meta-data android:name="SNOW_BALL_APP_ID"
+               android:value="_" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId"
+               android:value="@string/facebook_app_id" />
+    <meta-data android:name="com.facebook.sdk.ClientToken"
+               android:value="@string/facebook_client_token" />
+    <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+               android:value="false" />
+    <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+               android:value="false" />
+    <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+               android:resource="@drawable/ic_notification" />
+    <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+               android:resource="@color/colorbar" />
+    <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id"
+               android:value="@string/default_notification_channel_id" />
+    <meta-data android:name="com.openinstall.APP_KEY"
+               android:value="0" />
+    <service android:name="prod.apptest.com.fcm.MyFirebaseMessagingService"
+             android:exported="false">
+      <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+      </intent-filter>
+    </service>
+    <receiver android:name="com.adjust.sdk.AdjustReferrerReceiver"
+              android:permission="android.permission.INSTALL_PACKAGES"
+              android:exported="true">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER" />
+      </intent-filter>
+    </receiver>
+    <activity android:name="com.facebook.CustomTabActivity"
+              android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="@string/fb_login_protocol_scheme" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="fbconnect"
+              android:host="cct.prod.app_sige7tlbf5.com" />
+      </intent-filter>
+    </activity>
+    <provider android:name="androidx.core.content.FileProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.fileProvider"
+              android:grantUriPermissions="true">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                 android:resource="@xml/file_paths" />
+    </provider>
+    <activity android:theme="@style/AppTheme.NoActionBar"
+              android:name="com.linecorp.linesdk.openchat.ui.CreateOpenChatActivity" />
+    <activity android:theme="@style/LineSdk_AuthenticationActivity"
+              android:name="com.linecorp.linesdk.auth.internal.LineAuthenticationActivity"
+              android:exported="false"
+              android:launchMode="singleTop"
+              android:configChanges="keyboardHidden|orientation|screenSize" />
+    <activity android:name="com.linecorp.linesdk.auth.internal.LineAuthenticationCallbackActivity"
+              android:exported="true"
+              android:configChanges="keyboardHidden|orientation|screenSize">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="lineauth" />
+      </intent-filter>
+    </activity>
+    <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+              android:exported="true"
+              android:excludeFromRecents="true"
+              android:launchMode="singleTask">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="genericidp"
+              android:host="firebase.auth"
+              android:path="/" />
+      </intent-filter>
+    </activity>
+    <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+              android:exported="true"
+              android:excludeFromRecents="true"
+              android:launchMode="singleTask">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="recaptcha"
+              android:host="firebase.auth"
+              android:path="/" />
+      </intent-filter>
+    </activity>
+    <service android:name="com.google.firebase.components.ComponentDiscoveryService"
+             android:exported="false"
+             android:directBootAware="true">
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+      <meta-data android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+                 android:value="com.google.firebase.components.ComponentRegistrar" />
+    </service>
+    <service android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+             android:enabled="true"
+             android:exported="false">
+      <meta-data android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+                 android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+    </service>
+    <activity android:theme="@style/Theme.Hidden"
+              android:name="androidx.credentials.playservices.controllers.identityauth.HiddenActivity"
+              android:enabled="true"
+              android:exported="false"
+              android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+              android:fitsSystemWindows="true" />
+    <activity android:theme="@style/Theme.Hidden"
+              android:name="androidx.credentials.playservices.controllers.identitycredentials.IdentityCredentialApiHiddenActivity"
+              android:enabled="true"
+              android:exported="false"
+              android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+              android:fitsSystemWindows="true" />
+    <activity android:theme="@style/com_facebook_activity_theme"
+              android:name="com.facebook.FacebookActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+    <activity android:name="com.facebook.CustomTabMainActivity" />
+    <service android:name="com.transsion.athena.aidl.AthenaTrackService" />
+    <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+              android:exported="false"
+              android:excludeFromRecents="true" />
+    <service android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+             android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+             android:exported="true"
+             android:visibleToInstantApps="true" />
+    <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+               android:value="GlideModule" />
+    <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+              android:enabled="true"
+              android:exported="false" />
+    <service android:name="com.google.android.gms.measurement.AppMeasurementService"
+             android:enabled="true"
+             android:exported="false" />
+    <service android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+             android:permission="android.permission.BIND_JOB_SERVICE"
+             android:enabled="true"
+             android:exported="false" />
+    <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+              android:permission="com.google.android.c2dm.permission.SEND"
+              android:exported="true">
+      <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+      </intent-filter>
+      <meta-data android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+                 android:value="true" />
+    </receiver>
+    <service android:name="com.google.firebase.messaging.FirebaseMessagingService"
+             android:exported="false"
+             android:directBootAware="true">
+      <intent-filter android:priority="-500">
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+      </intent-filter>
+    </service>
+    <provider android:name="com.google.firebase.provider.FirebaseInitProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.firebaseinitprovider"
+              android:initOrder="100"
+              android:directBootAware="true" />
+    <activity android:theme="@android:style/Theme.Translucent.NoTitleBar"
+              android:name="com.google.android.gms.common.api.GoogleApiActivity"
+              android:exported="false" />
+    <provider android:name="com.facebook.internal.FacebookInitProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.FacebookInitProvider" />
+    <receiver android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+              android:exported="false">
+      <intent-filter>
+        <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver"
+              android:exported="false">
+      <intent-filter>
+        <action android:name="com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED" />
+      </intent-filter>
+    </receiver>
+    <provider android:name="androidx.startup.InitializationProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.androidx-startup">
+      <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                 android:value="androidx.startup" />
+      <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                 android:value="androidx.startup" />
+      <meta-data android:name="okhttp3.internal.platform.PlatformInitializer"
+                 android:value="androidx.startup" />
+      <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                 android:value="androidx.startup" />
+    </provider>
+    <uses-library android:name="android.ext.adservices"
+                  android:required="false" />
+    <meta-data android:name="com.google.android.gms.version"
+               android:value="@integer/google_play_services_version" />
+    <provider android:name="com.squareup.picasso.PicassoProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.com.squareup.picasso" />
+    <receiver android:name="androidx.profileinstaller.ProfileInstallReceiver"
+              android:permission="android.permission.DUMP"
+              android:enabled="true"
+              android:exported="true"
+              android:directBootAware="false">
+      <intent-filter>
+        <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+      </intent-filter>
+    </receiver>
+    <service android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+             android:exported="false">
+      <meta-data android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+                 android:value="cct" />
+    </service>
+    <service android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+             android:permission="android.permission.BIND_JOB_SERVICE"
+             android:exported="false" />
+    <receiver android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+              android:exported="false" />
+    <provider android:name="com.adjust.sdk.SystemLifecycleContentProvider"
+              android:exported="false"
+              android:authorities="prod.app_sige7tlbf5.com.adjust-lifecycle-provider" />
+    <activity android:theme="@style/Theme.PlayCore.Transparent"
+              android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+              android:exported="false"
+              android:stateNotNeeded="true" />
+  </application>
+</manifest>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<FrameLayout android:layout_width="fill_parent"
+             android:layout_height="wrap_content" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+  <LinearLayout android:orientation="horizontal"
+                android:id="@id/body"
+                android:padding="14.0dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+    <com.wang.avi.AVLoadingIndicatorView android:id="@id/avi"
+                          android:visibility="visible"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          app:indicatorColor="#5599ff"
+                          app:indicatorName="BallSpinFadeLoaderIndicator"
+                          style="@style/AVLoadingIndicatorView" />
+    <TextView android:textSize="18.0sp"
+              android:layout_gravity="center_vertical"
+              android:id="@id/message"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="30.0dp" />
+  </LinearLayout>
+</FrameLayout>

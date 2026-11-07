@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">ไม่สามารถถ่ายภาพ</string>
+  <string name="PERMISSION2">ณไม่ได้รับอนุญาตจากภาพถ่าย</string>
+  <string name="PERMISSION3">ยกเลิก</string>
+  <string name="PERMISSION4">ไปที่ชุด</string>
+  <string name="album">เฉลียง</string>
+  <string name="alertDialog1">ข้อความแจ้งเตือน</string>
+  <string name="alertDialog2">คุณต้องออกจากเกมส์หรือไม่?</string>
+  <string name="alertDialog3">ยกเลิก</string>
+  <string name="alertDialog4">ตกลง</string>
+  <string name="apk_install_failed">ขออภัย ดาวน์โหลดล้มเหลว โปรดตรวจสอบการเชื่อมต่อของคุณหรือลองใหม่ในภายหลัง</string>
+  <string name="camera">กล้อง</string>
+  <string name="cancel">ยกเลิก</string>
+  <string name="cleanCache">บันทึกการล้างที่ประสบความสำเร็จ</string>
+  <string name="cleanLog">ทำความสะอาดบันทึก</string>
+  <string name="copy">สำเนา</string>
+  <string name="domain_route_not_found">ไม่พบเส้นทางที่รวดเร็วโปรดลองอีกครั้งในภายหลัง</string>
+  <string name="file">เอกสาร</string>
+  <string name="find_fastest_route">เรามีบรรทัดที่เร็วที่สุดสำหรับคุณ!</string>
+  <string name="loading_video">Loading video…</string>
+  <string name="logText">ทดสอบบันทึกข้อความ</string>
+  <string name="mloading_dialog">กำลังโหลด…</string>
+  <string name="mloading_dialog_succeed">โหลด</string>
+  <string name="no_network">ไม่มีเครือข่าย</string>
+  <string name="ok">ตกลง</string>
+  <string name="prompt1">การแจ้งเตือนที่อบอุ่นโหลดครั้งแรกจะนานกว่านี้โปรดดำเนินการภายใต้ WIFI</string>
+  <string name="prompt2">หลังจากโหลดครั้งแรกในครั้งต่อไปที่คุณเปิดขึ้นจะไม่ใช้การเข้าชมแปลกใจ!</string>
+  <string name="prompt3">กำลังพยายามดาวน์โหลดโปรดอดใจรอ</string>
+  <string name="prompt4">ได้ทำให้พลังของน้ำท่วมเพื่อให้คุณโหลดแล้วและจะมีการปรับในเร็ว ๆ นี้</string>
+  <string name="request_push_permission">เปิดใช้งานสิทธิ์การแจ้งเตือนพุชสามารถให้คุณไม่พลาดข้อความสำคัญ</string>
+  <string name="retry">ลองใหม่อีกครั้ง</string>
+  <string name="save_failed">การบันทึกล้มเหลว</string>
+  <string name="save_image">ดาวน์โหลดรูปภาพ</string>
+  <string name="save_success">บันทึกเรียบร้อยแล้ว</string>
+  <string name="tip_speed_test">พยายามค้นหาสายที่เร็วที่สุด</string>
+  <string name="uploadPicture">โปรดเลือกวิธีการอัปโหลดภาพ</string>
+</resources>

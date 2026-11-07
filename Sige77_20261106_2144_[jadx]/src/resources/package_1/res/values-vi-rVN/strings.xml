@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Không thể chụp ảnh</string>
+  <string name="PERMISSION2">Bạn chưa được cấp quyền chụp ảnh</string>
+  <string name="PERMISSION3">Hủy</string>
+  <string name="PERMISSION4">Cài đặt</string>
+  <string name="album">Album</string>
+  <string name="alertDialog1">Lưu ý</string>
+  <string name="alertDialog2">Thoát game?</string>
+  <string name="alertDialog3">Chờ trong giây lát</string>
+  <string name="alertDialog4">Xác nhận</string>
+  <string name="apk_install_failed">Xin lỗi, tải xuống thất bại. Vui lòng kiểm tra kết nối mạng của bạn hoặc thử lại sau.</string>
+  <string name="camera">Máy ảnh</string>
+  <string name="cancel">Hủy</string>
+  <string name="cleanCache">Xóa Cache thành công</string>
+  <string name="cleanLog">Xóa Log</string>
+  <string name="copy">sao chép</string>
+  <string name="domain_route_not_found">Kết nối thất bại, vui lòng thử lại sau</string>
+  <string name="file">tài liệu</string>
+  <string name="find_fastest_route">Đã kết nối đường truyền nhanh nhất cho bạn!</string>
+  <string name="loading_video">Loading video…</string>
+  <string name="logText">測試LogText</string>
+  <string name="mloading_dialog">Đang tải…</string>
+  <string name="mloading_dialog_succeed">Nạp vào</string>
+  <string name="no_network">Không có kết nối mạng</string>
+  <string name="ok">Xác nhận</string>
+  <string name="prompt1">Lưu ý, Lần đầu tiên tải sẽ hơi chậm, xin hãy sử dụng Wifi l.</string>
+  <string name="prompt2">Sau lần tải đầu tiên bạn sẽ không phải tốn dung lượng cho những lần sau</string>
+  <string name="prompt3">Đang download, xin vui lòng chờ đợi giây lát</string>
+  <string name="prompt4">Tôi đã cố gắng hết sức tải lên cho bạn, sắp hoàn thành rồi nhé</string>
+  <string name="request_push_permission">Bật quyền thông báo đẩy sẽ đảm bảo bạn không bỏ lỡ thông tin quan trọng.</string>
+  <string name="retry">Thử lại</string>
+  <string name="save_failed">Lưu thất bại</string>
+  <string name="save_image">Lưu hình ảnh</string>
+  <string name="save_success">Lưu thành công</string>
+  <string name="tip_speed_test">Đang tìm kiếm đường truyền nhanh nhất cho bạn</string>
+  <string name="uploadPicture">Xin vui lòng chọn phương thức tải ảnh lên</string>
+</resources>

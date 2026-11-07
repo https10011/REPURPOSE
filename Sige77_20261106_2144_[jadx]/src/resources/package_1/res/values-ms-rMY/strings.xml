@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Tidak dapat mengambil gambar</string>
+  <string name="PERMISSION2">Anda tidak memberikan kebenaran foto</string>
+  <string name="PERMISSION3">batalkan</string>
+  <string name="PERMISSION4">Pergi ke tetapan</string>
+  <string name="album">Album</string>
+  <string name="alertDialog1">Peringatan</string>
+  <string name="alertDialog2">OK untuk keluar dari permainan</string>
+  <string name="alertDialog3">Tunggu sebentar</string>
+  <string name="alertDialog4">ya</string>
+  <string name="apk_install_failed">Maaf, muat turun gagal. Sila semak sambungan rangkaian anda atau cuba lagi nanti.</string>
+  <string name="camera">Kamera</string>
+  <string name="cancel">Batal</string>
+  <string name="cleanCache">Log Pembersihan Berjaya</string>
+  <string name="cleanLog">BersihkanLog</string>
+  <string name="copy">Salin</string>
+  <string name="domain_route_not_found">Tidak dapat mencari laluan pantas, sila cuba lagi nanti.</string>
+  <string name="file">Fail</string>
+  <string name="find_fastest_route">Kami telah menemui laluan terpantas untuk anda!</string>
+  <string name="loading_video">Memuat video</string>
+  <string name="logText">UjianLogTeks</string>
+  <string name="mloading_dialog">Memuat…</string>
+  <string name="mloading_dialog_succeed">Dimuat!</string>
+  <string name="no_network">Tiada Rangkaian</string>
+  <string name="ok">OK</string>
+  <string name="prompt1">Peringatan mesra, muatan pertama akan lebih lama, sila gunakan WIFI</string>
+  <string name="prompt2">Selepas muatan pertama, kali seterusnya anda buka aplikasi ini tidak akan menggunakan data, kejutan!</string>
+  <string name="prompt3">Mencuba untuk memuat turun, sila bersabar.</string>
+  <string name="prompt4">Saya telah berusaha keras untuk memuatkannya untuk anda, ia akan siap tidak lama lagi.</string>
+  <string name="request_push_permission">Mengaktifkan kebenaran pemberitahuan push memastikan anda tidak akan terlepas mesej penting.</string>
+  <string name="retry">Cuba Lagi</string>
+  <string name="save_failed">Penyimpanan gagal</string>
+  <string name="save_image">Muat Turun Gambar</string>
+  <string name="save_success">Disimpan dengan jayanya</string>
+  <string name="tip_speed_test">Mencuba mencari laluan terpantas.</string>
+  <string name="uploadPicture">Sila pilih kaedah muat naik</string>
+</resources>

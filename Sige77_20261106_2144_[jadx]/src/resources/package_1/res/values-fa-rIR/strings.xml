@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">نمی‌توان عکس گرفت</string>
+  <string name="PERMISSION2">شما اجازه عکس گرفتن را صادر نکرده‌اید</string>
+  <string name="PERMISSION3">لغو</string>
+  <string name="PERMISSION4">به تنظیمات بروید</string>
+  <string name="album">آلبوم</string>
+  <string name="alertDialog1">یادآوری</string>
+  <string name="alertDialog2">برای خروج از بازی، تأیید کنید</string>
+  <string name="alertDialog3">یک دقیقه صبر کنید</string>
+  <string name="alertDialog4">بله</string>
+  <string name="apk_install_failed">متأسفیم، دانلود ناموفق بود. لطفاً اتصال شبکه خود را بررسی کنید یا بعداً دوباره تلاش کنید.</string>
+  <string name="camera">دوربین</string>
+  <string name="cancel">لغو</string>
+  <string name="cleanCache">پاکسازی لاگ با موفقیت انجام شد</string>
+  <string name="cleanLog">پاکسازی لاگ</string>
+  <string name="copy">کپی</string>
+  <string name="domain_route_not_found">نمی‌توانیم مسیر سریع را پیدا کنیم، لطفاً بعداً دوباره تلاش کنید.</string>
+  <string name="file">فایل</string>
+  <string name="find_fastest_route">ما سریع‌ترین مسیر را برای شما پیدا کرده‌ایم!</string>
+  <string name="loading_video">ویدیو در حال بارگذاری</string>
+  <string name="logText">متن تست لاگ</string>
+  <string name="mloading_dialog">در حال بارگذاری…</string>
+  <string name="mloading_dialog_succeed">بارگذاری شد!</string>
+  <string name="no_network">بدون شبکه</string>
+  <string name="ok">تایید</string>
+  <string name="prompt1">یادآوری دوستانه: اولین بارگذاری ممکن است طولانی‌تر باشد، لطفاً از اتصال وای‌فای استفاده کنید.</string>
+  <string name="prompt2">پس از اولین بارگذاری، دفعه بعدی که آن را باز کنید، مصرف دیتا نخواهد داشت، شگفت‌انگیز!</string>
+  <string name="prompt3">در حال تلاش برای دانلود، لطفاً صبور باشید.</string>
+  <string name="prompt4">من تمام تلاشم را برای بارگذاری آن برای شما کرده‌ام، و به زودی آماده خواهد شد.</string>
+  <string name="request_push_permission">فعال کردن مجوز اعلان‌های پوششی تضمین می‌کند که پیام‌های مهم را از دست ندهید.</string>
+  <string name="retry">تلاش مجدد</string>
+  <string name="save_failed">ذخیره‌سازی ناموفق بود</string>
+  <string name="save_image">دانلود تصویر</string>
+  <string name="save_success">با موفقیت ذخیره شد</string>
+  <string name="tip_speed_test">در حال تلاش برای یافتن سریع‌ترین مسیر.</string>
+  <string name="uploadPicture">لطفاً روش بارگذاری را انتخاب کنید</string>
+</resources>

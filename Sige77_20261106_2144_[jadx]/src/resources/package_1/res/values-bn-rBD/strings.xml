@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">ছবি তোলা যায় না</string>
+  <string name="PERMISSION2">আপনি ছবি অনুমতি দেননি</string>
+  <string name="PERMISSION3">বাতিল করুন</string>
+  <string name="PERMISSION4">সেটিংসে যান</string>
+  <string name="album">অ্যালবাম</string>
+  <string name="alertDialog1">অবগতি</string>
+  <string name="alertDialog2">খেলা ছেড়ে যেতে ঠিক আছেন</string>
+  <string name="alertDialog3">একটি মিনিট অপেক্ষা করুন</string>
+  <string name="alertDialog4">হ্যাঁ</string>
+  <string name="apk_install_failed">দুঃখিত, ডাউনলোড ব্যর্থ হয়েছে। অনুগ্রহ করে আপনার নেটওয়ার্ক সংযোগ চেক করুন বা পরে আবার চেষ্টা করুন।</string>
+  <string name="camera">ক্যামেরা</string>
+  <string name="cancel">বাতিল করুন</string>
+  <string name="cleanCache">লগ সফলভাবে সাফ করা হয়েছে</string>
+  <string name="cleanLog">লগ সাফ করুন</string>
+  <string name="copy">কপি</string>
+  <string name="domain_route_not_found">দ্রুত রুট খুঁজে পেতে সম্ভব হয়নি, দয়া করে পরে আবার চেষ্টা করুন।</string>
+  <string name="file">নথি</string>
+  <string name="find_fastest_route">আমরা আপনার জন্য সবচেয়ে দ্রুত লাইন পেয়েছি!</string>
+  <string name="loading_video">ভিডিও লোড হচ্ছে...</string>
+  <string name="logText">টেস্ট লগ টেক্সট</string>
+  <string name="mloading_dialog">লোড হচ্ছে...</string>
+  <string name="mloading_dialog_succeed">লোড হয়েছে!</string>
+  <string name="no_network">নেটওয়ার্ক নেই</string>
+  <string name="ok">ঠিক আছে</string>
+  <string name="prompt1">উষ্ণ অনুস্মারণ, প্রথম লোড সময় বেশি সময় নেবে, WI-FI এর আওতায় চালান।</string>
+  <string name="prompt2">প্রথম লোডের পরে, আপনি যত্ন নেবেন না, আশ্চর্য!</string>
+  <string name="prompt3">ডাউনলোড করতে চেষ্টা করছি, অপেক্ষা করুন।</string>
+  <string name="prompt4">আমি আপনার জন্য এটি লোড করতে অধিক প্রয়াস করেছি এবং শীঘ্রই প্রস্তুত হবে।</string>
+  <string name="request_push_permission">পুশ বিজ্ঞপ্তি অনুমতি সক্ষম করা আপনি গুরুতর বার্তা প্রাপ্ত না হওয়ার নিশ্চিত করে।</string>
+  <string name="retry">পুনরায় চেষ্টা করুন</string>
+  <string name="save_failed">সংরক্ষণ ব্যর্থ</string>
+  <string name="save_image">চিত্র ডাউনলোড করুন</string>
+  <string name="save_success">সফলভাবে সংরক্ষণ করা হয়েছে</string>
+  <string name="tip_speed_test">সবচেয়ে দ্রুত লাইন খোঁজার চেষ্টা করা হচ্ছে।</string>
+  <string name="uploadPicture">দয়া করে একটি চিত্র আপলোড পদ্ধতি নির্বাচন করুন</string>
+</resources>

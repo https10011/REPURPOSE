@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">No se puede tomar fotos</string>
+  <string name="PERMISSION2">No has concedido permiso para acceder a las fotos</string>
+  <string name="PERMISSION3">Cancelar</string>
+  <string name="PERMISSION4">Ir a configuración</string>
+  <string name="album">Álbum</string>
+  <string name="alertDialog1">Aviso</string>
+  <string name="alertDialog2">¿Deseas salir del juego?</string>
+  <string name="alertDialog3">Espera un momento</string>
+  <string name="alertDialog4">Sí</string>
+  <string name="apk_install_failed">Lo sentimos, la descarga falló. Verifica tu conexión a Internet o intenta más tarde.</string>
+  <string name="camera">Cámara</string>
+  <string name="cancel">Cancelar</string>
+  <string name="cleanCache">Registro limpiado exitosamente</string>
+  <string name="cleanLog">LimpiarRegistro</string>
+  <string name="copy">Copiar</string>
+  <string name="domain_route_not_found">No se pudo encontrar una ruta rápida, por favor intenta más tarde.</string>
+  <string name="file">Archivo</string>
+  <string name="find_fastest_route">¡Encontramos la línea más rápida para ti!</string>
+  <string name="loading_video">Cargando video</string>
+  <string name="logText">TextoDePrueba</string>
+  <string name="mloading_dialog">Cargando…</string>
+  <string name="mloading_dialog_succeed">¡Cargado!</string>
+  <string name="no_network">Sin conexión</string>
+  <string name="ok">Aceptar</string>
+  <string name="prompt1">Aviso: la primera carga puede tardar más; se recomienda usar Wi-Fi.</string>
+  <string name="prompt2">Después de la primera carga, abrir la app no consumirá datos. ¡Sorpresa!</string>
+  <string name="prompt3">Descargando, por favor espera con paciencia.</string>
+  <string name="prompt4">Estoy haciendo mi mejor esfuerzo para cargarlo, ¡ya casi está listo!</string>
+  <string name="request_push_permission">Activar notificaciones push garantiza que no te pierdas mensajes importantes.</string>
+  <string name="retry">Reintentar</string>
+  <string name="save_failed">Error al guardar</string>
+  <string name="save_image">Descargar imagen</string>
+  <string name="save_success">Guardado con éxito</string>
+  <string name="tip_speed_test">Buscando la línea más rápida.</string>
+  <string name="uploadPicture">Selecciona el método de carga</string>
+</resources>

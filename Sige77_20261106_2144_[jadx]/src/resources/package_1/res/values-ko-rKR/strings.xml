@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">사진을 찍을 수 없습니다</string>
+  <string name="PERMISSION2">사진 권한을 허용하지 않았습니다</string>
+  <string name="PERMISSION3">취소</string>
+  <string name="PERMISSION4">설정으로 가기</string>
+  <string name="album">앨범</string>
+  <string name="alertDialog1">알림</string>
+  <string name="alertDialog2">게임을 종료해도 괜찮습니까?</string>
+  <string name="alertDialog3">잠시만 기다려 주세요</string>
+  <string name="alertDialog4">예</string>
+  <string name="apk_install_failed">죄송합니다, 다운로드에 실패했습니다. 네트워크 연결을 확인하거나 나중에 다시 시도하세요.</string>
+  <string name="camera">카메라</string>
+  <string name="cancel">취소</string>
+  <string name="cleanCache">로그 정리 완료</string>
+  <string name="cleanLog">로그 정리</string>
+  <string name="copy">복사</string>
+  <string name="domain_route_not_found">빠른 경로를 찾을 수 없습니다. 나중에 다시 시도해 주세요.</string>
+  <string name="file">파일</string>
+  <string name="find_fastest_route">가장 빠른 경로를 찾았습니다!</string>
+  <string name="loading_video">비디오 로딩 중</string>
+  <string name="logText">TestLogText</string>
+  <string name="mloading_dialog">로딩 중…</string>
+  <string name="mloading_dialog_succeed">로딩 완료!</string>
+  <string name="no_network">네트워크 없음</string>
+  <string name="ok">확인</string>
+  <string name="prompt1">첫 로딩은 시간이 더 걸릴 수 있으니, Wi-Fi에서 작업해주세요.</string>
+  <string name="prompt2">첫 로딩 후, 다음에 열 때는 트래픽을 소모하지 않습니다. 놀라운 일이죠!</string>
+  <string name="prompt3">다운로드 중입니다. 잠시만 기다려 주세요.</string>
+  <string name="prompt4">당신을 위해 최선을 다해 로딩 중입니다. 곧 준비가 완료됩니다.</string>
+  <string name="request_push_permission">푸시 알림 권한을 활성화하면 중요한 메시지를 놓치지 않게 됩니다.</string>
+  <string name="retry">다시 시도</string>
+  <string name="save_failed">저장 실패</string>
+  <string name="save_image">이미지 다운로드</string>
+  <string name="save_success">저장 완료</string>
+  <string name="tip_speed_test">가장 빠른 경로를 찾고 있습니다.</string>
+  <string name="uploadPicture">업로드 방법을 선택하세요</string>
+</resources>

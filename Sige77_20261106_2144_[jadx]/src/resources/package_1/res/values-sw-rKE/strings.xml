@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Haiwezi kupiga picha</string>
+  <string name="PERMISSION2">Hujatoa ruhusa ya picha</string>
+  <string name="PERMISSION3">Ghairi</string>
+  <string name="PERMISSION4">Nenda kwenye mipangilio</string>
+  <string name="album">Albamu</string>
+  <string name="alertDialog1">Kumbusho</string>
+  <string name="alertDialog2">Sawa kuondoka kwenye mchezo</string>
+  <string name="alertDialog3">Subiri kidogo</string>
+  <string name="alertDialog4">Ndiyo</string>
+  <string name="apk_install_failed">Samahani, upakuaji umeshindwa. Tafadhali angalia muunganisho wako wa mtandao au jaribu tena baadaye.</string>
+  <string name="camera">Kamera</string>
+  <string name="cancel">Ghairi</string>
+  <string name="cleanCache">Usafishaji wa Logi Umefanikiwa</string>
+  <string name="cleanLog">Safisha Logi</string>
+  <string name="copy">Nakili</string>
+  <string name="domain_route_not_found">Hatuwezi kupata njia ya haraka, tafadhali jaribu tena baadaye.</string>
+  <string name="file">Faili</string>
+  <string name="find_fastest_route">Tumeipata njia ya haraka zaidi kwako!</string>
+  <string name="loading_video">Upakiaji wa Video</string>
+  <string name="logText">Maandishi ya Jaribio la Logi</string>
+  <string name="mloading_dialog">Inapakia…</string>
+  <string name="mloading_dialog_succeed">Imepakiwa!</string>
+  <string name="no_network">Hakuna Mtandao</string>
+  <string name="ok">Sawa</string>
+  <string name="prompt1">Kumbuka, upakiaji wa kwanza utachukua muda mrefu, tafadhali fanya chini ya WIFI</string>
+  <string name="prompt2">Baada ya upakiaji wa kwanza, mara inayofuata haita tumia data, mshangao!</string>
+  <string name="prompt3">Kujaribu kupakua, tafadhali kuwa na subira.</string>
+  <string name="prompt4">Nimejitahidi sana kupakia kwa ajili yako, na nitakuwa tayari hivi karibuni.</string>
+  <string name="request_push_permission">Kuwezesha ruhusa za arifa za kushinikiza kunahakikisha hutakosa ujumbe muhimu.</string>
+  <string name="retry">Jaribu Tena</string>
+  <string name="save_failed">Hifadhi imeshindwa</string>
+  <string name="save_image">Pakua Picha</string>
+  <string name="save_success">Imehifadhiwa kwa mafanikio</string>
+  <string name="tip_speed_test">Kujaribu kupata njia ya haraka zaidi.</string>
+  <string name="uploadPicture">Tafadhali chagua njia ya kupakia</string>
+</resources>

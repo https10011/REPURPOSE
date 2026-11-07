@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Rasmga olish imkoni yo‘q</string>
+  <string name="PERMISSION2">Siz fotosurat olish uchun ruxsat bermagansiz</string>
+  <string name="PERMISSION3">Bekor qilish</string>
+  <string name="PERMISSION4">Sozlamalarga o‘tish</string>
+  <string name="album">Albom</string>
+  <string name="alertDialog1">Eslatma</string>
+  <string name="alertDialog2">O'yindan chiqishga rozimisiz?</string>
+  <string name="alertDialog3">Bir daqiqa kuting</string>
+  <string name="alertDialog4">Ha</string>
+  <string name="apk_install_failed">Uzr, yuklab olish muvaffaqiyatsiz tugadi. Iltimos, tarmoq ulanishingizni tekshirib ko‘ring yoki keyinroq qayta urinib ko‘ring.</string>
+  <string name="camera">Kamera</string>
+  <string name="cancel">Bekor qilish</string>
+  <string name="cleanCache">Log muvaffaqiyatli tozalandi</string>
+  <string name="cleanLog">Log tozalash</string>
+  <string name="copy">Nusxalash</string>
+  <string name="domain_route_not_found">Tez yo‘l topilmadi, iltimos, keyinroq urinib ko‘ring.</string>
+  <string name="file">Fayl</string>
+  <string name="find_fastest_route">Siz uchun eng tezkor yo‘lni topdik!</string>
+  <string name="loading_video">Video yuklanmoqda</string>
+  <string name="logText">TestLogMatni</string>
+  <string name="mloading_dialog">Yuklanmoqda…</string>
+  <string name="mloading_dialog_succeed">Yuklandi!</string>
+  <string name="no_network">Tarmoq yo‘q</string>
+  <string name="ok">OK</string>
+  <string name="prompt1">Issiq xabardorlik: birinchi yuklanish uzoqroq vaqt olishi mumkin, iltimos, WIFI orqali foydalaning.</string>
+  <string name="prompt2">Birinchi yuklashdan so‘ng, keyingi marta ochganingizda tarmoq ma’lumotlari sarflanmaydi, ajablanasiz!</string>
+  <string name="prompt3">Yuklab olishga harakat qilinmoqda, iltimos, sabr qiling.</string>
+  <string name="prompt4">Siz uchun yuklashga katta harakat qildim va tez orada tayyor bo‘ladi.</string>
+  <string name="request_push_permission">Push bildirishnomalari ruxsatini yoqish, muhim xabarlardan chetda qolmasligingizni ta’minlaydi.</string>
+  <string name="retry">Qayta urinib ko‘ring</string>
+  <string name="save_failed">Saqlash muvaffaqiyatsiz tugadi</string>
+  <string name="save_image">Rasmni yuklab olish</string>
+  <string name="save_success">Muvaffaqiyatli saqlandi</string>
+  <string name="tip_speed_test">Eng tezkor yo‘lni topishga harakat qilinmoqda.</string>
+  <string name="uploadPicture">Iltimos, yuklash usulini tanlang</string>
+</resources>

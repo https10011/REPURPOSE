@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<RelativeLayout android:layout_width="fill_parent"
+                android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+  <WebView android:id="@id/webview"
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent" />
+  <TextView android:textSize="14.0sp"
+            android:id="@id/webviewtext"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/logText"
+            android:singleLine="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true" />
+  <Button android:id="@id/webviewbutton"
+          android:visibility="gone"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10.0sp"
+          android:text="@string/cleanLog"
+          android:textAllCaps="false" />
+  <RelativeLayout android:id="@id/loading"
+                  android:background="@drawable/icon_bg"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent" />
+</RelativeLayout>

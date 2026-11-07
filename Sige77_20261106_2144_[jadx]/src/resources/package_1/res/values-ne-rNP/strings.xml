@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">तस्बिर खिच्न सकिँदैन</string>
+  <string name="PERMISSION2">तपाईंले तस्बिर अनुमति प्रदान गर्नुभएको छैन</string>
+  <string name="PERMISSION3">रद्द गर्नुहोस्</string>
+  <string name="PERMISSION4">सेटिङमा जानुहोस्</string>
+  <string name="album">एल्बम</string>
+  <string name="alertDialog1">स्मरण</string>
+  <string name="alertDialog2">खेल छोड्न ठिक छ</string>
+  <string name="alertDialog3">केही क्षण पर्खनुहोस्</string>
+  <string name="alertDialog4">हो</string>
+  <string name="apk_install_failed">माफ गर्नुहोस्, डाउनलोड असफल भयो। कृपया आफ्नो नेटवर्क जडान जाँच गर्नुहोस् वा पछि पुन: प्रयास गर्नुहोस्।</string>
+  <string name="camera">क्यामेरा</string>
+  <string name="cancel">रद्द गर्नुहोस्</string>
+  <string name="cleanCache">लग सफा सफल भयो</string>
+  <string name="cleanLog">लग सफा</string>
+  <string name="copy">प्रतिलिपि गर्नुहोस्</string>
+  <string name="domain_route_not_found">छिटो मार्ग फेला पार्न सकिएन, कृपया पछि पुन: प्रयास गर्नुहोस्।</string>
+  <string name="file">फाइल</string>
+  <string name="find_fastest_route">हामीले तपाईंको लागि सबैभन्दा छिटो लाइन पाएका छौं!</string>
+  <string name="loading_video">भिडियो लोड हुँदैछ</string>
+  <string name="logText">परीक्षण लग पाठ</string>
+  <string name="mloading_dialog">लोड हुँदैछ…</string>
+  <string name="mloading_dialog_succeed">लोड भयो!</string>
+  <string name="no_network">नेटवर्क छैन</string>
+  <string name="ok">ओके</string>
+  <string name="prompt1">न्यानो सम्झना: पहिलो लोड लामो हुन सक्छ, कृपया WIFI को प्रयोग गर्नुहोस्।</string>
+  <string name="prompt2">पहिलो लोडपछि, अर्को पटक खोल्दा डेटा खर्च हुनेछैन, अचम्म!</string>
+  <string name="prompt3">डाउनलोड गर्ने प्रयास गर्दैछ, कृपया धैर्य राख्नुहोस्।</string>
+  <string name="prompt4">मैले तपाईंको लागि लोड गर्न ठूलो प्रयास गरिसकेको छु, र म चाँडै तयार हुनेछु।</string>
+  <string name="request_push_permission">पुष नोटिफिकेसन अनुमति सक्षम गर्दा तपाईंले महत्वपूर्ण सन्देशहरू गुमाउनुहुने छैन।</string>
+  <string name="retry">पुन: प्रयास गर्नुहोस्</string>
+  <string name="save_failed">सुरक्षित गर्न असफल भयो</string>
+  <string name="save_image">तस्बिर डाउनलोड गर्नुहोस्</string>
+  <string name="save_success">सफलतापूर्वक सुरक्षित भयो</string>
+  <string name="tip_speed_test">सबैभन्दा छिटो लाइन खोज्ने प्रयास गरिँदैछ।</string>
+  <string name="uploadPicture">कृपया अपलोड विधि चयन गर्नुहोस्</string>
+</resources>

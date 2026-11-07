@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Fotoğraf çekilemiyor</string>
+  <string name="PERMISSION2">Fotoğraf izni verilmedi</string>
+  <string name="PERMISSION3">İptal</string>
+  <string name="PERMISSION4">Ayarları aç</string>
+  <string name="album">Albüm</string>
+  <string name="alertDialog1">Hatırlatma</string>
+  <string name="alertDialog2">Oyundan ayrılmak istiyor musunuz?</string>
+  <string name="alertDialog3">Bir dakika bekleyin</string>
+  <string name="alertDialog4">Evet</string>
+  <string name="apk_install_failed">Üzgünüz, indirme başarısız oldu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.</string>
+  <string name="camera">Kamera</string>
+  <string name="cancel">İptal</string>
+  <string name="cleanCache">Başarıyla Log Temizlendi</string>
+  <string name="cleanLog">Logları Temizle</string>
+  <string name="copy">Kopyala</string>
+  <string name="domain_route_not_found">Hızlı bağlantı bulunamadı, lütfen daha sonra tekrar deneyin.</string>
+  <string name="file">Belge</string>
+  <string name="find_fastest_route">Sizin için en hızlı bağlantıyı bulduk!</string>
+  <string name="loading_video">Video yükleniyor...</string>
+  <string name="logText">TestLogMetni</string>
+  <string name="mloading_dialog">Yükleniyor...</string>
+  <string name="mloading_dialog_succeed">Yüklendi!</string>
+  <string name="no_network">Ağ Yok</string>
+  <string name="ok">Tamam</string>
+  <string name="prompt1">Sıcak hatırlatma, ilk yüklenme daha uzun sürebilir, lütfen WI-FI altında işlem yapın</string>
+  <string name="prompt2">İlk yüklemeden sonra bir daha açtığınızda veri kullanılmaz, sürpriz!</string>
+  <string name="prompt3">İndirilmeye çalışılıyor, lütfen sabırlı olun.</string>
+  <string name="prompt4">Sizin için yüklemek için büyük bir çaba sarfettim ve yakında hazır olacak.</string>
+  <string name="request_push_permission">Bildirim izinlerini etkinleştirmek önemli mesajları kaçırmanızı önler.</string>
+  <string name="retry">Yeniden Dene</string>
+  <string name="save_failed">Kaydetme Başarısız</string>
+  <string name="save_image">Resmi İndir</string>
+  <string name="save_success">Başarıyla Kaydedildi</string>
+  <string name="tip_speed_test">En hızlı bağlantıyı bulmaya çalışılıyor.</string>
+  <string name="uploadPicture">Lütfen bir resim yükleme yöntemi seçin</string>
+</resources>

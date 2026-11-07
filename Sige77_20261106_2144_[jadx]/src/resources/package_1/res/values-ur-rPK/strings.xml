@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">تصویریں نہیں لے سکتا</string>
+  <string name="PERMISSION2">آپ نے تصویر کی اجازت نہیں دی ہے۔</string>
+  <string name="PERMISSION3">منسوخ کریں</string>
+  <string name="PERMISSION4">سیٹ پر جائیں۔</string>
+  <string name="album">البم</string>
+  <string name="alertDialog1">یاد دہانی</string>
+  <string name="alertDialog2">کھیل چھوڑنا ٹھیک ہے۔</string>
+  <string name="alertDialog3">ذرا رکو</string>
+  <string name="alertDialog4">جی ہاں</string>
+  <string name="apk_install_failed">معاف کریں، ڈاؤن لوڈ ہونے میں ناکامی ہوگئی ہے۔ براہ کرم اپنی نیٹ ورک کنکشن چیک کریں یا بعد میں دوبارہ کوشش کریں۔</string>
+  <string name="camera">کیمرہ</string>
+  <string name="cancel">منسوخ کریں۔</string>
+  <string name="cleanCache">کامیاب کلین لاگ</string>
+  <string name="cleanLog">کلین لاگ</string>
+  <string name="copy">کاپی</string>
+  <string name="domain_route_not_found">تیز راستہ نہیں مل سکتا، براہ کرم بعد میں دوبارہ کوشش کریں۔</string>
+  <string name="file">دستاوی</string>
+  <string name="find_fastest_route">ہمارے پاس آپ کے لیے تیز ترین لائن ہے!</string>
+  <string name="loading_video">ویڈیو لوڈ ہو رہی ہے…</string>
+  <string name="logText">TestLogText</string>
+  <string name="mloading_dialog">تحميل</string>
+  <string name="mloading_dialog_succeed">محمل</string>
+  <string name="no_network">کوئی نیٹ ورک نہیں۔</string>
+  <string name="ok">ٹھیک ہے</string>
+  <string name="prompt1">گرم یاد دہانی، پہلا بوجھ لمبا ہوگا، براہ کرم وائی فائی کے تحت کام کریں۔</string>
+  <string name="prompt2">پہلے لوڈ کے بعد، اگلی بار جب آپ اسے کھولیں گے تو ٹریفک استعمال نہیں کرے گا، حیرت!</string>
+  <string name="prompt3">ڈاؤن لوڈ کرنے کی کوشش کر رہا ہوں، براہ کرم صبر کریں۔</string>
+  <string name="prompt4">میں نے پہلے ہی اسے آپ کے لیے لوڈ کرنے کی بھرپور کوشش کی ہے، اور میں جلد ہی تیار ہو جاؤں گا۔</string>
+  <string name="request_push_permission">پُش اطلاعاتی کی اجازت کو ممکن بنانے سے یقینی بنایں کہ آپ اہم پیغامات سے محروم نہیں ہوں گے۔</string>
+  <string name="retry">دوبارہ کوشش کریں۔</string>
+  <string name="save_failed">محفوظ کرنا ناکام ہو گیا۔</string>
+  <string name="save_image">تصویر ڈاؤن لوڈ کریں۔</string>
+  <string name="save_success">کامیابی سے محفوظ ہو گیا۔</string>
+  <string name="tip_speed_test">تیز ترین لائن تلاش کرنے کی کوشش کر رہے ہیں۔</string>
+  <string name="uploadPicture">براہ کرم تصویر اپ لوڈ کرنے کا طریقہ منتخب کریں۔</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">Impossible de prendre des photos</string>
+  <string name="PERMISSION2">Vous n'avez pas accordé l'autorisation d'utiliser l'appareil photo</string>
+  <string name="PERMISSION3">Annuler</string>
+  <string name="PERMISSION4">Aller aux paramètres</string>
+  <string name="album">Album</string>
+  <string name="alertDialog1">Rappel</string>
+  <string name="alertDialog2">Quitter le jeu</string>
+  <string name="alertDialog3">Attendez une minute</string>
+  <string name="alertDialog4">Oui</string>
+  <string name="apk_install_failed">Désolé, le téléchargement a échoué. Veuillez vérifier votre connexion réseau ou réessayer plus tard.</string>
+  <string name="camera">Appareil photo</string>
+  <string name="cancel">Annuler</string>
+  <string name="cleanCache">Journal nettoyé avec succès</string>
+  <string name="cleanLog">Nettoyer le journal</string>
+  <string name="copy">Copier</string>
+  <string name="domain_route_not_found">Impossible de trouver une route rapide, veuillez réessayer plus tard.</string>
+  <string name="file">Fichier</string>
+  <string name="find_fastest_route">Nous avons la ligne la plus rapide pour vous !</string>
+  <string name="loading_video">Chargement de la vidéo</string>
+  <string name="logText">Texte de journal de test</string>
+  <string name="mloading_dialog">Chargement…</string>
+  <string name="mloading_dialog_succeed">Chargé !</string>
+  <string name="no_network">Pas de réseau</string>
+  <string name="ok">OK</string>
+  <string name="prompt1">Petit rappel, le premier chargement sera plus long, veuillez utiliser le WIFI</string>
+  <string name="prompt2">Après le premier chargement, la prochaine ouverture ne consommera pas de données, surprise !</string>
+  <string name="prompt3">Téléchargement en cours, veuillez patienter.</string>
+  <string name="prompt4">J'ai déjà fait de gros efforts pour le charger pour vous, il sera prêt sous peu.</string>
+  <string name="request_push_permission">Activer les autorisations de notification push garantit que vous ne manquerez pas de messages importants.</string>
+  <string name="retry">Réessayer</string>
+  <string name="save_failed">Échec de l'enregistrement</string>
+  <string name="save_image">Télécharger l'image</string>
+  <string name="save_success">Enregistré avec succès</string>
+  <string name="tip_speed_test">Tentative de trouver la ligne la plus rapide.</string>
+  <string name="uploadPicture">Veuillez sélectionner la méthode de téléchargement</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">ဓာတ္ပံုရိုက္ခြင့္မျပဳပါ</string>
+  <string name="PERMISSION2">သင္သည္ ဓာတ္ပံုရိုက္ခြင့္မျပဳထားပါ</string>
+  <string name="PERMISSION3">ဖ်က္သိမ္းသည္</string>
+  <string name="PERMISSION4">set ကိုသြားပါ</string>
+  <string name="album">အယ္ဘမ္</string>
+  <string name="alertDialog1">သတိေပးခ်က္</string>
+  <string name="alertDialog2">အိုေက၊ ဂိမ္းထဲမွ ထြက္ပါ</string>
+  <string name="alertDialog3">ခဏေစာင့္ပါ</string>
+  <string name="alertDialog4">ဟုတ္ကဲ့</string>
+  <string name="apk_install_failed">အရှင်အသစ်၊ ဒီမှာတင်နေခဲ့ရတယ်။ ကျွန်တော်တို့အား သင့်အတက် ကျွန်တော်တို့၏အထောက်အပံ့ကို စစ်ဆေးပါတယ်။</string>
+  <string name="camera">ကင္မရာ</string>
+  <string name="cancel">ဖ်က္သိမ္းသည္</string>
+  <string name="cleanCache">မွတ္တမ္းကိုရွင္းလင္းတာေအာင္ျမင္ပါသည္</string>
+  <string name="cleanLog">မွတ္တမ္းရွင္းလင္းျခင္း</string>
+  <string name="copy">ေကာ္ပီ</string>
+  <string name="domain_route_not_found">ျမန္တဲ့လမ္းေၾကာင္းကိုရွာမေတြ႔ရင္ ေက်းဇူးျပဳ၍ ထပ္မံၾကိဳးစားပါ</string>
+  <string name="file">စာရွက်စာတမ်း</string>
+  <string name="find_fastest_route">သင့္အတြက္ အျမန္ဆံုးလိုင္းရိွတယ္</string>
+  <string name="loading_video">ဗီဒီယို လုပ္ေဆာင္ေနဆဲ</string>
+  <string name="logText">TestLogText</string>
+  <string name="mloading_dialog">ဖွင့်နေသည်</string>
+  <string name="mloading_dialog_succeed">တင်ထားသည်။</string>
+  <string name="no_network">နက္၀က္မရိွပါ</string>
+  <string name="ok">အိုေက</string>
+  <string name="prompt1">ေနြးေထြးစြာသတိေပးပါရေစ ၊ ပထမဆံုးလုပ္ေဆာင္မွုမွာ ၾကာပါလိမ့္မယ္၊ ေက်းဇူးျပဳ၍ ၀ိုင္ဖိုင္အသံုးျပဳပါ</string>
+  <string name="prompt2">ပထမလုပ္ေဆာင္မွုအျပီးမွာ ေနာက္တစ္ၾကိမ္ သင္အသံုးျပဳရင္ အဆင္မေျပမွုျဖစ္မွာမဟုတ္ပါဘူး၊ အံ့ၾသစရာပါပဲ</string>
+  <string name="prompt3">ၾကိဳးစားျပီး download ဆြဲပါ၊ ေက်းဇူးျပဳ၍ စိတ္ရွည္ေပးပါ</string>
+  <string name="prompt4">က်ြန္ေတာ္တို႔ဘက္မွ သင့္အတြက္ ၾကိဳးစားထားပါတယ္၊ မၾကာခင္ က်ြန္ေတာ့္ဘက္မွ အဆင္သင့္ျဖစ္ေတာ့မွာပါ</string>
+  <string name="request_push_permission">ပြည်မှန်စွာ push notification ကို ဖွင့်ပါကနေ သင်တို့ကိုမျှဝေခြင်းများကို မမှန်ကန်ပါသည်။</string>
+  <string name="retry">ျပန္ၾကိဳးစားပါ</string>
+  <string name="save_failed">သိမ္းဆည္းမွု က်ရံွုးပါသည္</string>
+  <string name="save_image">ဓာတ္ပံု download လုပ္ျခင္း</string>
+  <string name="save_success">သိမ္းဆည္းမွု ေအာင္ျမင္ပါသည္</string>
+  <string name="tip_speed_test">လိုင္းအျမန္ဆံုးကို ၾကိဳးစားျပီးရွာေဖြပါ</string>
+  <string name="uploadPicture">ေက်းဇူးျပဳ၍ ပံုတင္ရမည့္ နည္းလမ္းေရြးခ်ယ္ပါ</string>
+</resources>

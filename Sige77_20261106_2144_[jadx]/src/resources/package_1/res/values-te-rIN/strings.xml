@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<resources>
+  <string name="PERMISSION1">చిత్రాలు తీసుకోవడం సాధ్యం కాదు</string>
+  <string name="PERMISSION2">మీరు ఫోటో అనుమతిని ఇవ్వలేదు</string>
+  <string name="PERMISSION3">రద్దు</string>
+  <string name="PERMISSION4">సెట్టింగ్‌కు వెళ్లండి</string>
+  <string name="album">అల్బమ్</string>
+  <string name="alertDialog1">గమనిక</string>
+  <string name="alertDialog2">గేమ్ నుండి బయటకు వెళ్లడానికి సరే</string>
+  <string name="alertDialog3">ఒక నిమిషం వేచి ఉండండి</string>
+  <string name="alertDialog4">అవును</string>
+  <string name="apk_install_failed">క్షమించండి, డౌన్లోడ్ విఫలమైంది. దయచేసి మీ నెట్‌వర్క్ కనెక్షన్‌ని తనిఖీ చేయండి లేదా తరువాత ప్రయత్నించండి.</string>
+  <string name="camera">కెమెరా</string>
+  <string name="cancel">రద్దు</string>
+  <string name="cleanCache">లాగ్ శుభ్రీకరణ విజయవంతంగా జరిగింది</string>
+  <string name="cleanLog">క్లీన్ లాగ్</string>
+  <string name="copy">కాపీ</string>
+  <string name="domain_route_not_found">త్వరిత మార్గం కనుగొనబడలేదు, దయచేసి తర్వాత ప్రయత్నించండి.</string>
+  <string name="file">ఫైలు</string>
+  <string name="find_fastest_route">మీకోసం అత్యంత వేగవంతమైన మార్గం ఉంది!</string>
+  <string name="loading_video">వీడియో లోడ్ అవుతోంది</string>
+  <string name="logText">టెస్ట్ లాగ్ టెక్స్ట్</string>
+  <string name="mloading_dialog">లోడ్ అవుతోంది…</string>
+  <string name="mloading_dialog_succeed">లోడ్ అయింది!</string>
+  <string name="no_network">నెట్‌వర్క్ లేదు</string>
+  <string name="ok">సరే</string>
+  <string name="prompt1">గమనిక: మొదటి లోడ్ కొద్దిగా ఎక్కువ సమయం పడుతుంది, దయచేసి WIFI ద్వారా ఆపరేట్ చేయండి.</string>
+  <string name="prompt2">మొదటి లోడ్ తరువాత, తదుపరి సారి ఓపెన్ చేసినప్పుడు డేటా వినియోగం ఉండదు, ఆశ్చర్యంగా ఉంటుంది!</string>
+  <string name="prompt3">డౌన్లోడ్ కోసం ప్రయత్నిస్తున్నాం, దయచేసి కొద్దికాలం ఎదురుచూడండి.</string>
+  <string name="prompt4">మీ కోసం లోడ్ చేయడానికి నేను ఇప్పటికే ఎంతగానో ప్రయత్నించాను, త్వరలో సిద్ధమవుతాను.</string>
+  <string name="request_push_permission">పుష్ నోటిఫికేషన్ అనుమతులను సక్రియం చేయడం వల్ల మీరు ముఖ్యమైన సందేశాలను కోల్పోకుండా ఉంటారు.</string>
+  <string name="retry">మళ్లీ ప్రయత్నించండి</string>
+  <string name="save_failed">సేవ్ విఫలమైంది</string>
+  <string name="save_image">చిత్రాన్ని డౌన్లోడ్ చేయండి</string>
+  <string name="save_success">విజయవంతంగా సేవ్ చేయబడింది</string>
+  <string name="tip_speed_test">అత్యంత వేగవంతమైన లైన్‌ను కనుగొనడానికి ప్రయత్నిస్తున్నాం.</string>
+  <string name="uploadPicture">దయచేసి అప్‌లోడ్ విధానాన్ని ఎంచుకోండి</string>
+</resources>
