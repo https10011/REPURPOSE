@@ -1,0 +1,18 @@
+# Local toolchain (PHP + MariaDB) — disposable
+.tools/
+
+# Local configuration and runtime state
+web/config/config.local.php
+web/var/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Test artefacts
+web/tests/**/*.log
+*.tmp

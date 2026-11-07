@@ -1,0 +1,188 @@
+/* Harness styling — deliberately plain and neutral. It is not the merchant product UI. */
+
+:root {
+  --ink: #16181d;
+  --muted: #5b6472;
+  --line: #e3e6ec;
+  --bg: #f6f7f9;
+  --accent: #0b62d6;
+  --card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+#site {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 14px 32px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 16px;
+}
+
+.site-header .brand {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.site-header .sub {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.hint {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.params {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.params th,
+.params td {
+  text-align: left;
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  word-break: break-all;
+}
+
+.params th {
+  width: 42%;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.params td.empty {
+  color: #a3aab6;
+}
+
+.bridge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+  font-size: 12px;
+}
+
+.bridge-list span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  color: var(--muted);
+}
+
+.bridge-list span.ok {
+  border-color: #b9e0c4;
+  background: #eefaf1;
+  color: #1d6b37;
+}
+
+.bridge-list span.missing {
+  border-color: #f0c7c7;
+  background: #fdf0f0;
+  color: #8c2b2b;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+}
+
+.actions button,
+.row button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.actions button:active,
+.row button:active {
+  background: #eef2f8;
+}
+
+.result {
+  margin: 12px 0 0;
+  padding: 10px;
+  background: #0f1115;
+  color: #d7e2f0;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 46px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.sample {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.site-footer {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  padding: 4px 8px 0;
+}

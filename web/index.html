@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>Sige77</title>
+    <link rel="icon" href="assets/img/ic_launcher.png" />
+    <link rel="apple-touch-icon" href="assets/img/ic_launcher.png" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+  </head>
+  <body>
+    <!--
+      DOM mirror of the Android layouts:
+        activtiy_vassonic.xml : RelativeLayout(colorbar) > WebView(tvw_test) + FrameLayout(frameLayout)
+                                + TextView(webviewtext) + Button(webviewbutton)
+                                + RelativeLayout(loading) > ImageView(loading_image)
+        loading_dialog_view   : vertical LinearLayout(dialog_view, bg=dialog_bg, padding 10dp)
+                                > 50dp loaders + TextView(loading_text, 12sp, white)
+        shape_splash.xml      : splash_bg fill + 90dp centred splash_logo
+    -->
+    <div id="shell">
+      <div id="content">
+        <iframe
+          id="webview"
+          title="Sige77 content"
+          referrerpolicy="no-referrer"
+          allow="clipboard-read; clipboard-write; camera; microphone; autoplay; fullscreen; geolocation"
+        ></iframe>
+
+        <div id="frameLayout"></div>
+
+        <pre id="webviewtext" aria-hidden="true"></pre>
+        <button id="webviewbutton" type="button">CleanLog</button>
+
+        <div id="loading" aria-hidden="true"></div>
+
+        <div id="loadingDialog" role="status" aria-live="polite">
+          <div class="loading-dialog-inner">
+            <div class="loader ring" data-loader="ring"></div>
+            <div class="loader line" data-loader="line"></div>
+            <div class="loader mark" data-loader="success" aria-hidden="true">
+              <svg viewBox="0 0 50 50"><path d="M13 26 L22 35 L38 16" /></svg>
+            </div>
+            <div class="loader mark cross" data-loader="fail" aria-hidden="true">
+              <svg viewBox="0 0 50 50"><path d="M16 16 L34 34" /><path d="M34 16 L16 34" /></svg>
+            </div>
+            <p class="loading-text"></p>
+          </div>
+        </div>
+
+        <div id="toastHost" aria-live="polite"></div>
+        <div id="dialogHost"></div>
+      </div>
+
+      <div id="splash">
+        <img class="splash-logo" src="assets/img/splash_logo.jpg" alt="Sige77" />
+      </div>
+    </div>
+
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#000000" />
+    <title>Sige77</title>
+    <link rel="icon" href="assets/img/ic_launcher.png" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <style>
+      /* OpenWebActivity layout (activity_open_web.xml): FrameLayout fill + WebView + transparent
+         loading overlay. The floating close button is added programmatically at 30dp/190dp. */
+      #content {
+        background: #000;
+      }
+      #openWebClose img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="shell">
+      <div id="content">
+        <iframe
+          id="webview"
+          title="Sige77"
+          referrerpolicy="no-referrer"
+          allow="clipboard-read; clipboard-write; camera; microphone; autoplay; fullscreen; geolocation"
+        ></iframe>
+        <button id="openWebClose" type="button" aria-label="Close">
+          <img src="assets/img/close_floating_window.png" alt="" />
+        </button>
+        <div id="loading" class="hidden"></div>
+        <div id="toastHost" aria-live="polite"></div>
+        <div id="dialogHost"></div>
+      </div>
+    </div>
+    <script type="module" src="assets/js/open-web.js"></script>
+  </body>
+</html>

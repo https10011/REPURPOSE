@@ -1,0 +1,536 @@
+/* =============================================================================
+   shell.css — visual reconstruction of the Sige77 app shell.
+
+   Every metric/colour below is traceable to the decompiled resources:
+     colors.xml          colorbar #000000, colorAccent #ff4081, background #ffffff
+     styles.xml          AppTheme = Theme.AppCompat.Light.NoActionBar (colorPrimary #000000)
+     shape_splash.xml    splash_bg (fill) + splash_logo (90dp, centred)
+     activtiy_vassonic   root #colorbar, WebView fill, #loading overlay with icon_bg (centerCrop)
+     drawable/dialog_bg  #444444 solid, 20dp corner radius
+     loading_dialog_view vertical LinearLayout, padding 10dp, 50dp loader, 12sp white text +5dp
+     LVCircularRing      track rgba(255,255,255,0.39) stroke 8px, white 100° arc
+     RightDiaView/WrongDiaView  white stroke drawings (check / cross)
+     LoadCircleView      #888888 + #ffffff arcs
+     dimens.xml          toast_y_offset = 36dp
+     activity_webs.xml   debug TextView 14sp bottom-left + CleanLog button marginTop 10dp
+   ========================================================================== */
+
+:root {
+  --colorbar: #000000;
+  --color-accent: #ff4081;
+  --content-bg: #ffffff;
+  --dialog-card: #444444;
+  --dialog-radius: 20px;
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.54);
+  --toast-offset: 36px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--colorbar);
+  font-family: var(--font);
+  overscroll-behavior: none;
+}
+
+body {
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+#shell {
+  position: fixed;
+  inset: 0;
+  background: var(--colorbar);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   FrameLayout content (yg.setContentView)
+   -------------------------------------------------------------------------- */
+#content {
+  position: absolute;
+  inset: 0;
+  background: var(--content-bg);
+  overflow: hidden;
+}
+
+/* WebView equivalent */
+#webview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--content-bg);
+  display: block;
+}
+
+/* FrameLayout used for fullscreen video (mg.onShowCustomView) */
+#frameLayout {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 40;
+  display: none;
+}
+
+#frameLayout.visible {
+  display: block;
+}
+
+#frameLayout video {
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Splash (windowBackground = shape_splash)
+   -------------------------------------------------------------------------- */
+#splash {
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+  background: var(--content-bg) url("../img/splash_bg.jpg") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 220ms ease-out;
+}
+
+#splash.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#splash .splash-logo {
+  width: 90px; /* android:height/width = 90dp, gravity=center */
+  height: 90px;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Loading overlay (`<RelativeLayout id/loading>` + `<ImageView id/loading_image>`)
+   Shown while the domain is being resolved, exactly like the APK.
+   -------------------------------------------------------------------------- */
+#loading {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: var(--content-bg) url("../img/icon_bg.jpg") center center / cover no-repeat;
+}
+
+#loading.hidden {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Loading dialog (mz0 + dialog_bg + loading_dialog_view)
+   Window gravity = bottom, y = 300px on a 3x device = 100dp.
+   -------------------------------------------------------------------------- */
+#loadingDialog {
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  z-index: 35;
+  min-width: 96px;
+  padding: 10px;
+  border-radius: var(--dialog-radius);
+  background: var(--dialog-card);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  display: none;
+}
+
+#loadingDialog.visible {
+  display: flex;
+}
+
+.loading-dialog-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  display: none;
+}
+
+.loader.visible {
+  display: block;
+}
+
+/* LVCircularRing: translucent white track + rotating white 100° arc, stroke 8px */
+.loader.ring {
+  border-radius: 50%;
+}
+
+.loader.ring::before,
+.loader.ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.loader.ring::before {
+  border: 3px solid rgba(255, 255, 255, 0.39);
+}
+
+.loader.ring::after {
+  border: 3px solid transparent;
+  border-top-color: #fff;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  animation: ring-spin 1000ms linear infinite;
+}
+
+@keyframes ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* LoadCircleView (style "line"): two arcs in #888888 / #ffffff */
+.loader.line::before,
+.loader.line::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+}
+
+.loader.line::before {
+  border-top-color: #888888;
+  border-left-color: #888888;
+  animation: line-spin 900ms linear infinite;
+}
+
+.loader.line::after {
+  inset: 12px;
+  border-bottom-color: #ffffff;
+  border-right-color: #ffffff;
+  animation: line-spin 700ms linear infinite reverse;
+}
+
+@keyframes line-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* RightDiaView / WrongDiaView: white stroke drawings */
+.loader.mark {
+  display: none;
+}
+
+.loader.mark.visible {
+  display: block;
+}
+
+.loader.mark svg {
+  width: 50px;
+  height: 50px;
+  display: block;
+  overflow: visible;
+}
+
+.loader.mark path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: draw-mark 320ms ease-out forwards;
+}
+
+.loader.mark.cross path {
+  stroke-dasharray: 56;
+  stroke-dashoffset: 56;
+}
+
+@keyframes draw-mark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.loading-text {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  text-align: center;
+  max-width: 220px;
+  display: none;
+}
+
+.loading-text.visible {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Alert dialogs (f6 / b6 -> Material Light AlertDialog)
+   -------------------------------------------------------------------------- */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 60;
+}
+
+.dialog {
+  width: min(280px, 100%);
+  max-height: 80vh;
+  overflow: auto;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+    0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  padding: 24px 24px 8px;
+  color: var(--text-primary);
+}
+
+.dialog .dialog-title {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  margin: 0 0 16px;
+  color: var(--text-primary);
+}
+
+.dialog .dialog-message {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-secondary);
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.dialog .dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 8px -16px -8px 0;
+  flex-wrap: wrap;
+}
+
+.dialog .dialog-actions.wide {
+  justify-content: stretch;
+}
+
+.dialog button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.dialog button:active {
+  background: rgba(255, 64, 129, 0.12);
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+.dialog button:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.28);
+  outline-offset: 2px;
+}
+
+.dialog .dialog-actions.wide button {
+  flex: 1 1 0;
+  width: 0;
+}
+
+.dialog .chooser-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 16px;
+  color: var(--text-primary);
+  padding: 14px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Toast (ToastUtils, gravity=bottom, y offset 36dp)
+   -------------------------------------------------------------------------- */
+#toastHost {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--toast-offset);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 70;
+}
+
+.toast {
+  max-width: 80%;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: var(--dialog-card);
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: toast-in 160ms ease-out;
+  word-break: break-word;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Debug console (activity_webs.xml: webviewtext + webviewbutton)
+   -------------------------------------------------------------------------- */
+#webviewtext {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 40vh;
+  overflow: auto;
+  margin: 0;
+  padding: 4px;
+  font-size: 14px;
+  line-height: 1.3;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  color: #111;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 50;
+  display: none;
+}
+
+#webviewtext.visible {
+  display: block;
+}
+
+#webviewbutton {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  z-index: 51;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-family: var(--font);
+  color: #111;
+  background: #e6e6e6;
+  border: 1px solid #999;
+  border-radius: 2px;
+  cursor: pointer;
+  display: none;
+}
+
+#webviewbutton.visible {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Fullscreen media / misc
+   -------------------------------------------------------------------------- */
+.hidden {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Secondary webview (OpenWebActivity) floating close button: 80dp, 30dp/190dp margins */
+#openWebClose {
+  position: absolute;
+  left: 30px;
+  top: 190px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 28px;
+  line-height: 80px;
+  text-align: center;
+  z-index: 80;
+  cursor: pointer;
+}
+
+/* finishAffinity()/moveTaskToBack() equivalent: the shell leaves the screen, the tab stays. */
+body.shell-closed #content,
+body.shell-closed #splash {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader.ring::after,
+  .loader.line::before,
+  .loader.line::after,
+  .toast,
+  .loader.mark path {
+    animation: none !important;
+  }
+}

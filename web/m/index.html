@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sige77 — embedded content</title>
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <!--
+      This page is the WebView *content* of the reconstructed shell.
+
+      The original APK loads the merchant site from the resolved domain, appending
+      "/m/index.html" (X5_Activity.E) — that HTML is proprietary and is not part of the
+      decompiled repository, so this same-origin harness takes its place. It is NOT a
+      re-creation of the merchant product: it displays the attribution parameters the shell
+      appends and lets every reconstructed JS bridge method be exercised.
+
+      The shell validates main-document markup for the merchant markers it uses to detect a
+      hijacked domain (jg.shouldInterceptRequest: "root", ucbet, "brand="). The marker below
+      makes the harness pass that check instead of being rejected as a hijack.
+    -->
+    <div
+      id="site"
+      data-hijack-marker='"root"'
+      data-note="merchant markup marker required by jg.shouldInterceptRequest"
+    >
+      <header class="site-header">
+        <img class="brand" src="../assets/img/splash_logo.jpg" alt="Sige77" />
+        <div>
+          <h1>Sige77</h1>
+          <p class="sub">Embedded content · shell harness</p>
+        </div>
+      </header>
+
+      <section class="card">
+        <h2>Attribution received</h2>
+        <p class="hint">Parameters appended by the shell (X5_Activity.E / C).</p>
+        <table id="params" class="params"></table>
+      </section>
+
+      <section class="card">
+        <h2>JS bridge</h2>
+        <p class="hint" id="bridgeState">checking…</p>
+        <div id="bridgeList" class="bridge-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Bridge calls</h2>
+        <p class="hint">Every reconstructed method, with its live result.</p>
+        <div id="actions" class="actions"></div>
+        <pre id="result" class="result">result: —</pre>
+      </section>
+
+      <section class="card">
+        <h2>File chooser</h2>
+        <p class="hint">Exercises yg.uploadPicture() → Camera / Album / Cancel.</p>
+        <input id="uploadInput" type="file" accept="image/*" />
+        <p id="uploadResult" class="hint">no file selected</p>
+      </section>
+
+      <section class="card">
+        <h2>Downloads</h2>
+        <p class="hint">Exercises the DownloadListener / receiveBase64FromBlob paths.</p>
+        <p class="row">
+          <button id="blobDownload" type="button">blob: download</button>
+          <button id="textDownload" type="button">base64 text download</button>
+        </p>
+        <p class="row"><img id="sampleImage" class="sample" src="../assets/img/ic_launcher.png" alt="sample" /></p>
+        <p class="hint">Long-press (or right-click) the image to open the shell image menu.</p>
+      </section>
+
+      <footer class="site-footer">
+        <p>
+          This harness stands in for the remote merchant page that the APK loads in its WebView.
+          The product itself is not part of the repository and is intentionally not re-created.
+        </p>
+      </footer>
+    </div>
+    <script type="module" src="site.js"></script>
+  </body>
+</html>
